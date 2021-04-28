@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi');
 
-// signup validation
+// SIGNUP validation
 const signupValidation = (data) => {
     const schema = Joi.object({
         username: Joi.string()
@@ -20,7 +20,7 @@ const signupValidation = (data) => {
     if (error) return res.status(400).send(error.details[0].message);
 }
 
-// login validation
+// LOGIN validation
 const loginValidation = (data) => {
     const schema = Joi.object({
         email: Joi.string()

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Character = require('../../models/character');
+const verify = require('../verifyToken');
 
 // get all characters
 router.get('/', (req, res) => {
@@ -11,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 // create a character
-router.post('/', (req, res) => {
+router.post('/', verify, (req, res) => {
     const newCharacter = new Character({
         name: req.body.name,
         bio: req.body.bio,
@@ -28,14 +29,14 @@ router.post('/', (req, res) => {
 });
 
 // delete a character
-router.delete('/:character_id', (req, res) => {
+router.delete('/:character_id', verify, (req, res) => {
     Character.findOneAndDelete({ _id: req.params.character_id })
         .then(character => res.json(character))
         .catch(err => res.status(404).json(err))
 });
 
 // edit a character
-router.patch('/:character_id', (req, res) => {
+router.patch('/:character_id', verify, (req, res) => {
     Character.findOneAndUpdate({ _id: req.params.character_id }, { $set: req.body }, { new: true, useFindAndModify: false })
         .then(character => res.json({ _id: req.params.character_id }))
         .catch(err => res.status(404).json(err))

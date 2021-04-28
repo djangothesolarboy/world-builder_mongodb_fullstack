@@ -16,7 +16,7 @@ function HomePage({ data }) {
         dispatch(charActions.fetchCharacters())
     }, [dispatch]);
 
-    const chars = useSelector((state) => state.characters);
+    const chars = useSelector((state) => state);
 
     console.log('chars -->', chars)
 

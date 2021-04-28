@@ -7,8 +7,8 @@ export const removeCharacter = createAction('REMOVE_CHARACTER');
 
 export const fetchCharacters = () => async dispatch => {
     try {
-        const res = await axios.get('http://localhost:5000/api/characters', { crossorigin: true }).headers("Access-Control-Allow-Origin", "true");
-        console.log('res -> ', res)
+        const res = await axios.get('http://localhost:5000/api/characters');
+        console.log('res -> ', res.data)
         dispatch(getCharacters(res.data));
     } catch (err) {
         console.log(err);
