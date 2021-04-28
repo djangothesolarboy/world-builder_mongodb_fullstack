@@ -1,0 +1,30 @@
+### Create a question
+POST http://127.0.0.1:5000/api/characters
+Content-Type: application/json
+
+{
+    "name": "pee",
+    "bio": "sdfsdf",
+    "age": "23",
+    "gender": "tufgsdfgsdfgrkey",
+    "height": "tall",
+    "bodyType": "musc",
+    "hairColor": "black",
+    "race": "white"
+}
+
+### View characters
+GET http://127.0.0.1:5000/api/characters
+Content-Type: application/json
+
+### Delete a question
+DELETE http://127.0.0.1:5000/api/characters/6088ee224c6cee10f9d6d6bf
+Content-Type: application/json
+
+### Edit question
+PATCH http://127.0.0.1:5000/api/characters/6088ee354c6cee10f9d6d6c0
+Content-Type: application/json
+
+{
+    "name": "peterrrrrrrr"
+}
