@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect, useParams } from 'react-router-dom';
 
-import * as charActions from '../../actions/character_actions';
+import * as charActions from '../../store/char';
 
 import './HomePage.css';
 
