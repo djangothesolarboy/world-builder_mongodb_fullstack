@@ -45,7 +45,6 @@ function newChar(character) {
 export const fetchCharacters = () => async dispatch => {
     try {
         const res = await axios.get('http://localhost:5000/api/characters');
-        console.log('res -> ', res.data)
         dispatch(allChars(res.data));
     } catch (err) {
         console.log(err);
@@ -70,7 +69,16 @@ export const updateCharacters = character => async dispatch => {
     }
 };
 
-export const deletecharacter = id => async dispatch => {
+export const getUserChar = character => async dispatch => {
+    try {
+        const res = await axios.patch('http://localhost:5000/api/characters', character);
+        dispatch(userChar(res.data));
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const deleteCharacter = id => async dispatch => {
     try {
         const res = await axios.delete(`http://localhost:5000/api/characters/${id}`);
         dispatch(delChar(res.data));

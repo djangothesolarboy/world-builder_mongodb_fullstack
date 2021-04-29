@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import * as sessionActions from "../../store/session";
+// import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
 function SignupFormPage() {
@@ -19,17 +19,17 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
-        .catch(res => {
-          if (res.data && res.data.errors) setErrors(res.data.errors);
-        });
+      // return dispatch(sessionActions.signup({ email, username, password }))
+      //   .catch(res => {
+      //     if (res.data && res.data.errors) setErrors(res.data.errors);
+      //   });
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
   return (
     <>
-      <h1>Sign Up</h1>
+      <h1>Signup</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}

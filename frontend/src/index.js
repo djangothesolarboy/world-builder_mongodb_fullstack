@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-import { configureAppStore } from './store/store';
+import configureAppStore from './store/store';
 
 document.addEventListener('DOMContentLoaded', () => {
   let initialState = {};

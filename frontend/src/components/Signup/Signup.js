@@ -1,35 +1,37 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-// import * as sessionActions from "../../store/session";
-import './SignupForm.css';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-function SignupForm() {
+import * as userActions from '../../store/user';
+
+
+function Signup() {
     const dispatch = useDispatch();
-    // const sessionUser = useSelector((state) => state.session.user);
-    const [email, setEmail] = useState("");
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    // const sessionUser = useSelector((state) => state.user.user);
+
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState([]);
 
-    // if (sessionUser) return <Redirect to="/" />;
+    // if (sessionUser) return <Redirect to='/'/>;
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password === confirmPassword) {
             setErrors([]);
-            // return dispatch(sessionActions.signup({ email, username, password }))
-            //     .catch(res => {
-            //         if (res.data && res.data.errors) setErrors(res.data.errors);
-            //     });
+            return dispatch(userActions.signup({ email, username, password }))
+                .catch(res => {
+                    if (res.data && res.data.errors) setErrors(res.data.errors);
+                });
         }
-        return setErrors(['Confirm Password field must be the same as the Password field']);
+        return setErrors(['Confirm password field must be the same as the password field.'])
     };
 
     return (
         <>
-            <h1>Sign Up</h1>
+            <h1>Signup</h1>
             <form onSubmit={handleSubmit}>
                 <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -70,10 +72,11 @@ function SignupForm() {
                         required
                     />
                 </label>
-                <button type="submit">Sign Up</button>
+                <button type="submit">Signup</button>
             </form>
         </>
-    );
+    )
+
 }
 
-export default SignupForm;
+export default Signup;

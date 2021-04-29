@@ -24,7 +24,7 @@ function UserCharPage({ data }) {
         e.preventDefault();
 
         if (char.userId === sessionUser.id || sessionUser.username === 'admin') {
-            dispatch(charActions.deleteChar(userId, charId));
+            dispatch(charActions.deleteCharacter(userId, charId));
         } else {
             alert("You cannot delete things that aren't yours!");
         }

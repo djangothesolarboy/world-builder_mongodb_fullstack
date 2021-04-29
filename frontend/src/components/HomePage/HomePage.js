@@ -16,7 +16,7 @@ function HomePage({ data }) {
         dispatch(charActions.fetchCharacters())
     }, [dispatch]);
 
-    const chars = useSelector((state) => state);
+    const chars = useSelector((state) => state.characters.characters);
 
     console.log('chars -->', chars)
 
@@ -27,10 +27,9 @@ function HomePage({ data }) {
                 <div className='char-section'>
                     {<ul>
                         {/* {chars && chars.map((char) => 
-                            {/* <Link to={`/characters/${char.id}`}>
-                                char
+                            <a href={`/characters/${char.id}`}>
                                 {char.name}
-                            </Link> */}
+                            </a>
                         )} */}
                     </ul>}
                 </div>

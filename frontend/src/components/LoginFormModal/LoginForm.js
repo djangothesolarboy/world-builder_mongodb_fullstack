@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
+// import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import "./LoginForm.css";
 
@@ -12,11 +12,11 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
-      (res) => {
-        if (res.data && res.data.errors) setErrors(res.data.errors);
-      }
-    );
+    // return dispatch(sessionActions.login({ credential, password })).catch(
+    //   (res) => {
+    //     if (res.data && res.data.errors) setErrors(res.data.errors);
+    //   }
+    // );
   };
 
   return (
