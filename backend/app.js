@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const session = require('express-session');
 
 // import routes
 const charRouter = require('./routes/api/characters');
@@ -18,6 +19,12 @@ mongoose
 
 app.use(cors());
 app.use(express.json());
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}))
 
 app.get('/', (req, res) => res.send('Working!'));
 

@@ -5,6 +5,7 @@ import { Link, Route, Switch } from "react-router-dom";
 import './App.css';
 import HomePage from './components/HomePage/HomePage';
 import Signup from "./components/Signup/Signup";
+import Login from "./components/Login/Login";
 // import SignupFormPage from "./components/SignupFormPage";
 // import LoginFormPage from "./components/LoginFormPage";
 // import Navigation from "./components/Navigation";
@@ -19,6 +20,7 @@ function App({ store }) {
 				<div>
 					{/* <HomePage/> */}
 					<Signup/>
+					<Login/>
 						{/* <a href="/login" > */}
 							{/* <LoginFormPage /> */}
 						{/* </a> */}

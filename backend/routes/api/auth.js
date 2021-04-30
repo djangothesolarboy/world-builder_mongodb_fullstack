@@ -31,7 +31,6 @@ router.post('/signup', async (req, res) => {
     } catch(e) {
         res.status(400).send(e);
     }
-    console.log('hits back here')
 });
 
 // LOGIN router
@@ -49,14 +48,14 @@ router.post('/login', async (req, res) => {
 
     // create and assign a token
     const token = jwt.sign({ _id: user._id }, process.env.JWT_TOKEN);
-    res.header('auth-token', token).json({
+    res.json({
         error: null,
-        data: {
-            token,
-        }
+        user: user,
+        token: token
     })
-
-    // res.send('Login success!');
+    
+    req.session._id = token;
 });
+
 
 module.exports = router;

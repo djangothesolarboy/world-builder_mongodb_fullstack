@@ -31,11 +31,39 @@ export const signup = (user) => async (dispatch) => {
     }
 }
 
+export const is_logged_in = () => {
+    return localStorage.getItem("token") !== null;
+}
+
+// export const post=()=>{
+//     if(!localStorage.getItem("token"))
+//     {
+
+//     }
+
+//     axios.post("api/post",{
+//         thread:"im gay",
+//         user:"asdasd",
+//         token:localStorage.getItem("token")
+//     },function(){
+
+//     });
+// }
+
 export const login = (user) => async (dispatch) => {
     try {
         const { email, password } = user;
-        const res = await axios.post(`http://localhost:5000/api/users/login`, user);
-        dispatch(setUser(res.data));
+        const res = await axios({
+            method: 'post',
+            url: `http://localhost:5000/api/users/login`,
+            data: {
+                email,
+                password
+            }
+        });
+        if (!res.data.data.token) return alert('You a dumb dumb.');
+        localStorage.setItem('token', res.data.data.token);
+        dispatch(setUser(res.data.user));
     } catch (e) {
         console.log(e);
     }
