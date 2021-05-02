@@ -9,17 +9,17 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-
-  // if (userActions.is_logged_in) return <Redirect to="/" />;
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
     return dispatch(userActions.login({ email, password }))
       .catch((res) => {
-        if (res.data && res.data.errors) setErrors(res.data.errors);
-      });
+      if (res.data && res.data.errors) setErrors(res.data.errors);
+    });
   };
+  
+  
 
   return (
     <>
