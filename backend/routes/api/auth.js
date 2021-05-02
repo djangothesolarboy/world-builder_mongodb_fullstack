@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../../models/user');
 const { signupValidation, loginValidation } = require('../../validation');
+import is_logged_in  from '../verify.js';
 
 // SIGNUP router
 router.post('/signup', async (req, res) => {
@@ -47,7 +48,7 @@ router.post('/login', async (req, res) => {
     if (!validPass) return res.status(400).send('Invalid password.');
 
     // create and assign a token
-    const token = jwt.sign({ _id: user._id }, process.env.JWT_TOKEN);
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_TOKEN, { expiresIn: 604800 });
     res.json({
         error: null,
         user: user,
@@ -57,5 +58,23 @@ router.post('/login', async (req, res) => {
     req.session._id = token;
 });
 
+// LOGOUT router
+router.delete('/logout', 
+    (req, res) => {
+        req.session._id.destroy();
+        return res.json({ message: 'Logout success.' });
+});
+
+// RESTORE user router
+router.get('/', 
+    is_logged_in, 
+    (req, res) => {
+        const { user } = req;
+        if (user) {
+            return res.json({
+                user: user.toSafeObject()
+            });
+        } else return res.json({});
+})
 
 module.exports = router;

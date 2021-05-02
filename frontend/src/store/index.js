@@ -2,8 +2,10 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import charReducer from './char';
+import userReducer from './user';
 
 const rootReducer = combineReducers({
+    session: userReducer,
     characters: charReducer
 });
 

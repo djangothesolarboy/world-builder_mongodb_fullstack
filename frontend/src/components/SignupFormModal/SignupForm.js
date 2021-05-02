@@ -29,7 +29,7 @@ function SignupForm() {
 
     return (
         <>
-            <h1>Sign Up</h1>
+            <h1>Signup</h1>
             <form onSubmit={handleSubmit}>
                 <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}

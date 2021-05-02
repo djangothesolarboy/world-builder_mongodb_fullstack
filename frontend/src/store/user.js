@@ -31,25 +31,21 @@ export const signup = (user) => async (dispatch) => {
     }
 }
 
-export const is_logged_in = () => {
-    return localStorage.getItem("token") !== null;
-}
-
 // export const post=()=>{
-//     if(!localStorage.getItem("token"))
-//     {
-
-//     }
-
-//     axios.post("api/post",{
-//         thread:"im gay",
-//         user:"asdasd",
-//         token:localStorage.getItem("token")
-//     },function(){
-
-//     });
-// }
-
+    //     if(!localStorage.getItem("token"))
+    //     {
+        
+        //     }
+        
+        //     axios.post("api/post",{
+            //         thread:"im gay",
+            //         user:"asdasd",
+            //         token:localStorage.getItem("token")
+            //     },function(){
+                
+                //     });
+                // }
+                
 export const login = (user) => async (dispatch) => {
     try {
         const { email, password } = user;
@@ -61,8 +57,8 @@ export const login = (user) => async (dispatch) => {
                 password
             }
         });
-        if (!res.data.data.token) return alert('You a dumb dumb.');
-        localStorage.setItem('token', res.data.data.token);
+        // if (!res.data.data.token) return alert('You a dumb dumb.');
+        localStorage.setItem('token', res.data.token);
         dispatch(setUser(res.data.user));
     } catch (e) {
         console.log(e);
@@ -73,10 +69,17 @@ export const logout = () => async (dispatch) => {
     try {
         const res = await axios.delete(`http://localhost:5000/api/users/logout`);
         dispatch(removeUser());
+        localStorage.removeItem('token', res.data.token);
         return res;
     } catch (e) {
         console.log(e);
     }
+}
+
+export const restoreUser = () => async dispatch => {
+    const res = await axios.get('http://localhost:5000/api/user');
+    dispatch(setUser(res.data.user));
+    return res;
 }
 
 

@@ -1,27 +1,29 @@
 import React, { useState } from "react";
-// import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
-import "./LoginForm.css";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
+
+import * as userActions from '../../store/user';
 
 function LoginForm() {
   const dispatch = useDispatch();
-  const [credential, setCredential] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
+  // if (userActions.is_logged_in) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    // return dispatch(sessionActions.login({ credential, password })).catch(
-    //   (res) => {
-    //     if (res.data && res.data.errors) setErrors(res.data.errors);
-    //   }
-    // );
+    return dispatch(userActions.login({ email, password }))
+      .catch((res) => {
+        if (res.data && res.data.errors) setErrors(res.data.errors);
+      });
   };
 
   return (
     <>
-      <h1>Log In</h1>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
@@ -29,11 +31,11 @@ function LoginForm() {
           ))}
         </ul>
         <label>
-          Username or Email
+          Email
           <input
             type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
