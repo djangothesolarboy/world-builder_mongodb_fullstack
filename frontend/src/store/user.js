@@ -67,9 +67,11 @@ export const login = (user) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
     try {
-        const res = await axios.delete(`http://localhost:5000/api/users/logout`);
+        const res = await fetch(`http://localhost:5000/api/users/logout`, {
+            method: "DELETE"
+        });
+        localStorage.removeItem('token');
         dispatch(removeUser());
-        localStorage.removeItem('token', res.data.token);
         return res;
     } catch (e) {
         console.log(e);

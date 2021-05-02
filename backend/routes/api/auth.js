@@ -61,7 +61,8 @@ router.post('/login', async (req, res) => {
 // LOGOUT router
 router.delete('/logout', 
     (req, res) => {
-        req.session._id.destroy();
+        console.log('eeeeeeeeeee ----->')
+        req.session.destroy();
         return res.json({ message: 'Logout success.' });
 });
 
