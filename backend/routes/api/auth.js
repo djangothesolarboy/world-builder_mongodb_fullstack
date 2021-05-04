@@ -89,8 +89,6 @@ const restoreUser = (req, res, next) => {
 router.get('/', 
     restoreUser, 
     (req, res) => {
-        console.log('session -->', req.session._id)
-
         const { user } = req;
         if (user) {
             return res.json({
