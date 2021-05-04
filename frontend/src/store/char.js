@@ -52,8 +52,16 @@ export const fetchCharacters = () => async dispatch => {
 };
 
 export const submitCharacter = character => async dispatch => {
-    try {
-        const res = await axios.post('http://localhost:5000/api/characters', character);
+    try { 
+        const { 
+            name, bio, age, userId, gender, height, bodyType, hairColor, race, personality, motivation, posture, facialHair, eyes, behavior, dailyLife, quirks, fatalFlaw, talents, skills, occupation, hobbies, wounds, fearOne, fearTwo, fearThree, fearFour, fearFive, fearSix, positiveTraits, negativeTraits, idle, stressed, exhausted, inebriated, anxious, distracted, attraction, aroused, anger, provoke, overreact, denial, negCoping, posCoping, outerMot, innerMotGen, innerMotSpec } = character;
+        const res = await axios({
+            method: 'post',
+            url: 'http://localhost:5000/api/characters/new',
+            data: {
+                name, bio, age, userId, gender, height, bodyType, hairColor, race, personality, motivation, posture, facialHair, eyes, behavior, dailyLife, quirks, fatalFlaw, talents, skills, occupation, hobbies, wounds, fearOne, fearTwo, fearThree, fearFour, fearFive, fearSix, positiveTraits, negativeTraits, idle, stressed, exhausted, inebriated, anxious, distracted, attraction, aroused, anger, provoke, overreact, denial, negCoping, posCoping, outerMot, innerMotGen, innerMotSpec
+            }
+        });
         dispatch(userChar(res.data));
     } catch (err) {
         console.log(err);
@@ -89,7 +97,7 @@ export const deleteCharacter = id => async dispatch => {
 
 
 // reducer
-const charReducer = (state = { characters: {}, character: {} }, action) => {
+const charReducer = (state = { characters: [], character: {} }, action) => {
     let newState;
     switch (action.type) {
         case GET_CHARS:

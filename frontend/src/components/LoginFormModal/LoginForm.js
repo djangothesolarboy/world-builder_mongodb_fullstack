@@ -13,7 +13,11 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
+    <Redirect to='/'/>
     return dispatch(userActions.login({ email, password }))
+      .then(() => {
+        <Redirect to='/'/>
+      })
       .catch((res) => {
       if (res.data && res.data.errors) setErrors(res.data.errors);
     });

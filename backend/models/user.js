@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+let ObjectId = Schema.Types.ObjectId;
 
 const UserSchema = Schema({
     username: {
@@ -20,6 +21,7 @@ const UserSchema = Schema({
         max: 1024,
         min: 6
     },
+    characters: [ObjectId],
     date: {
         type: Date,
         default: Date.now

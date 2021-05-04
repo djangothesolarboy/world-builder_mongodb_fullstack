@@ -8,6 +8,7 @@ import * as userActions from './store/user';
 import SignupForm from './components/SignupFormModal/SignupForm.js';
 import LoginForm from './components/LoginFormModal/LoginForm.js';
 import Navigation from "./components/Navigation";
+import CharFormPage from "./components/CharFormPage/CharFormPage";
 
 function App({ store }) {
 	let isLoaded;
@@ -21,6 +22,9 @@ function App({ store }) {
 				<div className="App">
 				<header>ಥ_ಥ</header>
 				<Navigation/>
+				<Route path='/characters/new'>
+					<CharFormPage/>
+				</Route>
 				<Switch>
 					<Route className='route-link login' path='/login'>
 						<LoginForm/>

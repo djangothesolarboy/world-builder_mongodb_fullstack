@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../../models/user');
 const { signupValidation, loginValidation } = require('../../validation');
-import is_logged_in  from '../verify.js';
+const is_logged_in = require('../verify');
 
 // SIGNUP router
 router.post('/signup', async (req, res) => {
@@ -66,7 +66,7 @@ router.delete('/logout',
 });
 
 // RESTORE user router
-router.get('/', 
+router.get('/restore', 
     is_logged_in, 
     (req, res) => {
         const { user } = req;

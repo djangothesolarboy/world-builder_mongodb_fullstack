@@ -8,30 +8,23 @@ import './HomePage.css';
 
 function HomePage({ data }) {
     const dispatch = useDispatch();
-    // const { charId } = useParams();
 
-    // const sessionUser = useSelector((state) => state.session.user);
-    // const userId = useSelector((state) => state.session.user);
+    const sessionUser = useSelector((state) => state.session.user);
+    const chars = useSelector((state) => state.characters.characters);
     useEffect(() => {
         dispatch(charActions.fetchCharacters())
     }, [dispatch]);
-
-    const chars = useSelector((state) => state.characters.characters);
-
-    console.log('chars -->', chars)
 
 
     return (
         <div className='home-page-container'>
             <div className='char-section_container'>
                 <div className='char-section'>
-                    {<ul>
-                        {/* {chars && chars.map((char) => 
-                            <a href={`/characters/${char.id}`}>
-                                {char.name}
-                            </a>
-                        )} */}
-                    </ul>}
+                    {chars && chars.map((char) => 
+                        <Link className='chars-list char-link' to={`/characters/${char._id}`}>
+                            {char.name}
+                        </Link>
+                    )}
                 </div>
             </div>
         </div>

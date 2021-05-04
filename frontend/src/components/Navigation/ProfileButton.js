@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import * as userActions from '../../store/user';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
   
   const openMenu = () => {
@@ -25,9 +26,21 @@ function ProfileButton({ user }) {
   }, [showMenu]);
 
   const logout = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     dispatch(userActions.logout());
   };
+
+  window.onbeforeunload = function () {
+    console.log('things happening')
+    // if (sessionUser._id === null) {
+    //   console.log('things happening againnnnn')
+    //   dispatch(userActions.logout());
+    //   return localStorage.removeItem('token');
+    // } else {
+      //   return dispatch(userActions.restoreUser());
+      // }
+    return localStorage.removeItem('token');
+  }
 
   return (
     <div className='profile-button'>

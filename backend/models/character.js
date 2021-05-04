@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+let ObjectId = Schema.Types.ObjectId;
+
+const UserSchema = require('./user');
 
 const CharacterSchema = Schema({
     name: {
@@ -10,9 +13,7 @@ const CharacterSchema = Schema({
         type: String,
         required: true
     },
-    userId: {
-        type: Number
-    },
+    userId: ObjectId,
     personality: {
         type: String
     },

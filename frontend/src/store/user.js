@@ -79,7 +79,7 @@ export const logout = () => async (dispatch) => {
 }
 
 export const restoreUser = () => async dispatch => {
-    const res = await axios.get('http://localhost:5000/api/user');
+    const res = await axios.get('http://localhost:5000/api/users/restore');
     dispatch(setUser(res.data.user));
     return res;
 }

@@ -34,7 +34,7 @@ function UserCharPage({ data }) {
         <div className='char-page-container'>
             <div className='char'>
                 <p>
-                    {/* {char.name} */}
+                    {char.name}
                 </p>
             </div>
         </div>
