@@ -9,6 +9,7 @@ import SignupForm from './components/SignupFormModal/SignupForm.js';
 import LoginForm from './components/LoginFormModal/LoginForm.js';
 import Navigation from "./components/Navigation";
 import CharFormPage from "./components/CharFormPage/CharFormPage";
+import CharPage from './components/CharPage/CharPage';
 
 function App({ store }) {
 	let isLoaded;
@@ -22,10 +23,13 @@ function App({ store }) {
 				<div className="App">
 				<header>ಥ_ಥ</header>
 				<Navigation/>
-				<Route path='/characters/new'>
-					<CharFormPage/>
-				</Route>
 				<Switch>
+					<Route path='/characters/new'>
+						<CharFormPage/>
+					</Route>
+					<Route path='/characters/:character_id'>
+						<CharPage/>
+					</Route>
 					<Route className='route-link login' path='/login'>
 						<LoginForm/>
 					</Route>

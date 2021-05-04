@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Redirect, useParams } from 'react-router-dom';
+import { Link, NavLink, Redirect, useParams } from 'react-router-dom';
 
 import * as charActions from '../../store/char';
 
@@ -21,9 +21,9 @@ function HomePage({ data }) {
             <div className='char-section_container'>
                 <div className='char-section'>
                     {chars && chars.map((char) => 
-                        <Link className='chars-list char-link' to={`/characters/${char._id}`}>
+                        <NavLink className='chars-list char-link' to={`/characters/${char._id}`}>
                             {char.name}
-                        </Link>
+                        </NavLink>
                     )}
                 </div>
             </div>

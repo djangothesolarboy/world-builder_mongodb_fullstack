@@ -77,9 +77,13 @@ export const updateCharacters = character => async dispatch => {
     }
 };
 
-export const getUserChar = character => async dispatch => {
+export const getUserChar = (character_id) => async dispatch => {
     try {
-        const res = await axios.patch('http://localhost:5000/api/characters', character);
+        const res = await axios.get(`http://localhost:5000/api/characters/${character_id}`, {
+            params: {
+                ID: character_id
+            }
+        });
         dispatch(userChar(res.data));
     } catch (err) {
         console.log(err);

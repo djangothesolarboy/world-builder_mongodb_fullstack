@@ -30,17 +30,17 @@ function ProfileButton({ user }) {
     dispatch(userActions.logout());
   };
 
-  window.onbeforeunload = function () {
-    console.log('things happening')
-    // if (sessionUser._id === null) {
-    //   console.log('things happening againnnnn')
-    //   dispatch(userActions.logout());
-    //   return localStorage.removeItem('token');
-    // } else {
-      //   return dispatch(userActions.restoreUser());
-      // }
-    return localStorage.removeItem('token');
-  }
+  // window.onbeforeunload = function () {
+  //   console.log('things happening')
+  //   // if (sessionUser._id === null) {
+  //   //   console.log('things happening againnnnn')
+  //   //   dispatch(userActions.logout());
+  //   //   return localStorage.removeItem('token');
+  //   // } else {
+  //     //   return dispatch(userActions.restoreUser());
+  //     // }
+  //   return localStorage.removeItem('token');
+  // }
 
   return (
     <div className='profile-button'>

@@ -65,10 +65,32 @@ router.delete('/logout',
         return res.json({ message: 'Logout success.' });
 });
 
+const restoreUser = (req, res, next) => {
+    const { token } = req.session._id;
+    
+    return jwt.verify(token, process.env.JWT_TOKEN, null, async (err, jwtPayload) => {
+        if (err) return next();
+    
+        try {
+            const { id } = jwtPayload.data;
+            req.user = await User.findById(id);
+        } catch (e) {
+            req.session.destroy();
+            return next();
+        }
+    
+        if (!req.user) req.session.destroy();
+    
+        return next();
+    })
+}
+
 // RESTORE user router
-router.get('/restore', 
-    is_logged_in, 
+router.get('/', 
+    restoreUser, 
     (req, res) => {
+        console.log('session -->', req.session._id)
+
         const { user } = req;
         if (user) {
             return res.json({

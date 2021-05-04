@@ -64,7 +64,7 @@ router.post('/new', (req, res) => {
         innerMotSpec: req.body.innerMotSpec
     })
 
-    newCharacter.innerMotSpecsave().then(character => res.json(character))
+    newCharacter.save().then(character => res.json(character))
         .catch(err => res.status(404).json(err))
     // newCharacter.save(err => {
     //     if (err) return res.json(err);
@@ -78,6 +78,13 @@ router.post('/new', (req, res) => {
     //     })
     // })
 });
+
+// view one character
+router.get('/:character_id', (req, res) => {
+    const character = Character.findById({ _id: req.params.character_id })
+        .then(character => res.json(character))
+        .catch(err => res.status(404).json(err))
+})
 
 // delete a character
 router.delete('/:character_id', verify, (req, res) => {

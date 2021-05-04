@@ -1,30 +1,30 @@
 import { useEffect, useState } from 'react';
-import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 
+import * as sessionActions from '../../store/user';
 import * as charActions from '../../store/char';
 
-import './UserCharPage.css';
+import './CharPage.css';
 
-function UserCharPage({ data }) {
+function CharPage({ data }) {
     const dispatch = useDispatch();
-    const { charId } = useParams();
+    const { character_id } = useParams();
 
     const sessionUser = useSelector((state) => state.session.user);
     const userId = useSelector((state) => state.session.user);
 
-    const char = useSelector((state) => state.character);
+    const char = useSelector((state) => state.characters.character);
 
     useEffect(() => {
-        dispatch(charActions.getUserChar(userId, charId))
-    }, [dispatch, userId, charId]);
+        dispatch(charActions.getUserChar(character_id))
+    }, [dispatch, character_id]);
 
     const handleCharDelete = (e) => {
         e.preventDefault();
 
         if (char.userId === sessionUser.id || sessionUser.username === 'admin') {
-            dispatch(charActions.deleteCharacter(userId, charId));
+            dispatch(charActions.deleteCharacter(userId, character_id));
         } else {
             alert("You cannot delete things that aren't yours!");
         }
@@ -35,10 +35,11 @@ function UserCharPage({ data }) {
             <div className='char'>
                 <p>
                     {char.name}
+                    {char.age}
                 </p>
             </div>
         </div>
     )
 }
 
-export default UserCharPage;
+export default CharPage;
