@@ -1,7 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Provider } from 'react-redux';
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Link, NavLink, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Link, NavLink, Redirect, Route, Switch } from "react-router-dom";
 
 import './App.css';
 import * as userActions from './store/user';
@@ -10,6 +10,7 @@ import LoginForm from './components/LoginFormModal/LoginForm.js';
 import Navigation from "./components/Navigation";
 import CharFormPage from "./components/CharFormPage/CharFormPage";
 import CharPage from './components/CharPage/CharPage';
+import HomePage from "./components/HomePage/HomePage";
 
 function App({ store }) {
 	let isLoaded;
@@ -26,6 +27,9 @@ function App({ store }) {
 				<Switch>
 					<Route path='/characters/new'>
 						<CharFormPage/>
+					</Route>
+					<Route path='/characters'>
+						<HomePage/>
 					</Route>
 					<Route path='/characters/:character_id'>
 						<CharPage/>

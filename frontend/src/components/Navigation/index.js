@@ -27,12 +27,12 @@ function Navigation(){
   if (loggedIn) {
     sessionLinks = (
       <>
-        <NavLink className='nav-link home' exact to="/">Home</NavLink><br/>
+        <NavLink className='nav-link home' to="/">Home</NavLink><br/>
         <ProfileButton user={sessionUser}/>
-        <HomePage/>
         <NavLink to='/characters/new'>
           New Character
-        </NavLink>
+        </NavLink><br/>
+        <NavLink to='/characters'>Characters</NavLink>
       </>
     )
   } else {
@@ -45,7 +45,6 @@ function Navigation(){
         <NavLink to='/signup'>
           <SignupFormModal/>
         </NavLink>
-        <HomePage/>
       </>
     )
   }

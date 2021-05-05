@@ -16,6 +16,8 @@ function CharPage({ data }) {
 
     const char = useSelector((state) => state.characters.character);
 
+    console.log('char id -->', character_id)
+
     useEffect(() => {
         dispatch(charActions.getUserChar(character_id))
     }, [dispatch, character_id]);
@@ -34,8 +36,10 @@ function CharPage({ data }) {
         <div className='char-page-container'>
             <div className='char'>
                 <p>
-                    {char.name}
-                    {char.age}
+                    {char.name}<br/>
+                    {char.age}<br/>
+                    {char.bio}<br/>
+                    {char.height}<br/>
                 </p>
             </div>
         </div>

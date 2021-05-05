@@ -84,6 +84,7 @@ export const getUserChar = (character_id) => async dispatch => {
                 ID: character_id
             }
         });
+        console.log('char -->', res.data)
         dispatch(userChar(res.data));
     } catch (err) {
         console.log(err);

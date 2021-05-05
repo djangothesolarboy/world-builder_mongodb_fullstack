@@ -15,15 +15,14 @@ function HomePage({ data }) {
         dispatch(charActions.fetchCharacters())
     }, [dispatch]);
 
-
     return (
         <div className='home-page-container'>
             <div className='char-section_container'>
                 <div className='char-section'>
                     {chars && chars.map((char) => 
-                        <NavLink className='chars-list char-link' to={`/characters/${char._id}`}>
+                        <Link key={char.name} className='chars-list char-link' to={`/characters/${char._id}`}>
                             {char.name}
-                        </NavLink>
+                        </Link>
                     )}
                 </div>
             </div>
