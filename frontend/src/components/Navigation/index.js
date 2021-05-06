@@ -7,24 +7,17 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal/index.js';
 import SignupFormModal from '../SignupFormModal/index.js';
 
-import * as userActions from '../../store/user';
+import * as sessionActions from '../../store/user';
 
 import './Navigation.css';
 import HomePage from "../HomePage/HomePage";
 import CharFormPage from "../CharFormPage/CharFormPage";
 
-function Navigation(){
+function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
-
-  const dispatch = useDispatch();
   
-  const is_logged_in = () => {
-    return localStorage.getItem("token") !== null;
-  }
-  const loggedIn = is_logged_in();
-
   let sessionLinks;
-  if (loggedIn) {
+  if (sessionUser) {
     sessionLinks = (
       <>
         <NavLink className='nav-link home' to="/">Home</NavLink><br/>
@@ -51,7 +44,7 @@ function Navigation(){
 
   return (
     <>
-      {sessionLinks}
+      {isLoaded && sessionLinks}
     </>
   );
 }

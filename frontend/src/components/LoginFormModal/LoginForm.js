@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import * as userActions from '../../store/user';
+import * as sessionActions from '../../store/user';
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ function LoginForm() {
     e.preventDefault();
     setErrors([]);
     <Redirect to='/'/>
-    return dispatch(userActions.login({ email, password }))
+    return dispatch(sessionActions.login({ email, password }))
       .then(() => {
         <Redirect to='/'/>
       })

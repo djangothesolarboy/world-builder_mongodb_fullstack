@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Link, NavLink, Redirect, Route, Switch } from "react-router-dom";
 
 import './App.css';
-import * as userActions from './store/user';
+import * as sessionActions from './store/user';
 import SignupForm from './components/SignupFormModal/SignupForm.js';
 import LoginForm from './components/LoginFormModal/LoginForm.js';
 import Navigation from "./components/Navigation";
@@ -12,38 +12,43 @@ import CharFormPage from "./components/CharFormPage/CharFormPage";
 import CharPage from './components/CharPage/CharPage';
 import HomePage from "./components/HomePage/HomePage";
 
-function App({ store }) {
-	let isLoaded;
-	const is_logged_in = () => {
-		(localStorage.getItem("token") !== null) ? isLoaded = true : isLoaded = false;
-	}
+function App() {
+	const sessionUser = useSelector((state) =>  state.session.user);
+	const dispatch = useDispatch();
+	const [isLoaded, setIsLoaded] = useState(false);;
+
+	useEffect(() => {
+		dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+	}, [dispatch]);
+
+	if(!isLoaded) return null;
 
 	return (
-		<BrowserRouter>
-			<Provider store={store}>
-				<div className="App">
-				<header>ಥ_ಥ</header>
-				<Navigation/>
-				<Switch>
-					<Route path='/characters/new'>
-						<CharFormPage/>
-					</Route>
-					<Route path='/characters'>
-						<HomePage/>
-					</Route>
-					<Route path='/characters/:character_id'>
-						<CharPage/>
-					</Route>
-					<Route className='route-link login' path='/login'>
-						<LoginForm/>
-					</Route>
-					<Route className='route-link signup' path='/signup'>
-						<SignupForm/>
-					</Route>
-				</Switch>
-				</div>
-			</Provider>
-		</BrowserRouter>
+		<>
+			<header>ಥ_ಥ</header>
+			<Navigation isLoaded={isLoaded}/>
+			{isLoaded && (
+				<>
+					<Switch>
+						<Route path='/characters/new'>
+							<CharFormPage/>
+						</Route>
+						<Route path='/characters'>
+							<HomePage/>
+						</Route>
+						<Route path='/characters/:character_id'>
+							<CharPage/>
+						</Route>
+						<Route className='route-link login' path='/login'>
+							<LoginForm/>
+						</Route>
+						<Route className='route-link signup' path='/signup'>
+							<SignupForm/>
+						</Route>
+					</Switch>
+				</>
+			)}
+		</>
 	);
 }
 

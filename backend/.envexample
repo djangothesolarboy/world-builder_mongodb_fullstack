@@ -1,3 +1,4 @@
 DB_CONNECT=mongodb+srv://username:<password>@database_name.gsbqx.mongodb.net/test
 JWT_SECRET=<long_password_string_here>
 SECRET=<secret_here>
+JWT_EXPIRES_IN=604800

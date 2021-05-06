@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
-import * as userActions from '../../store/user';
+import * as sessionActions from '../../store/user';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ function ProfileButton({ user }) {
 
   const logout = (e) => {
     e.preventDefault();
-    dispatch(userActions.logout());
+    dispatch(sessionActions.logout());
   };
 
   return (
