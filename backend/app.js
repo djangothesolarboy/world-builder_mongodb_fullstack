@@ -7,7 +7,7 @@ const session = require('express-session');
 
 // import routes
 const charRouter = require('./routes/api/characters');
-const authRouter = require('./routes/api/auth');
+const userRouter = require('./routes/api/users');
 
 dotenv.config();
 
@@ -30,7 +30,7 @@ app.get('/', (req, res) => res.send('Working!'));
 
 // route middleware
 app.use('/api/characters', charRouter);
-app.use('/api/users', authRouter);
+app.use('/api/users', userRouter);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server is running on ${port}`));

@@ -22,7 +22,11 @@ export const signup = (user) => async (dispatch) => {
                 username,
                 email,
                 password
-            }
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: "include",
         })
         dispatch(setUser(res.data.user));
         return res;
@@ -55,7 +59,11 @@ export const login = (user) => async (dispatch) => {
             data: {
                 email,
                 password
-            }
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: "include",
         });
         // if (!res.data.data.token) return alert('You a dumb dumb.');
         localStorage.setItem('token', res.data.token);
