@@ -13,17 +13,20 @@ import CharPage from './components/CharPage/CharPage';
 import HomePage from "./components/HomePage/HomePage";
 
 function App({ store }) {
-	let isLoaded;
-	const is_logged_in = () => {
-		(localStorage.getItem("token") !== null) ? isLoaded = true : isLoaded = false;
-	}
+	const sessionUser = useSelector(state => state.session.user);
+	const dispatch = useDispatch();
+	const [isLoaded, setIsLoaded] = useState(false);
+	useEffect(() => {
+		dispatch(userActions.restoreUser()).then(() => setIsLoaded(true));
+	}, [dispatch]);
+
+	if (!isLoaded) return null;
 
 	return (
-		<BrowserRouter>
-			<Provider store={store}>
-				<div className="App">
-				<header>ಥ_ಥ</header>
-				<Navigation/>
+		<>
+			<header>ಥ_ಥ</header>
+			<Navigation isLoaded={isLoaded}/>
+			{isLoaded && (
 				<Switch>
 					<Route path='/characters/new'>
 						<CharFormPage/>
@@ -41,9 +44,8 @@ function App({ store }) {
 						<SignupForm/>
 					</Route>
 				</Switch>
-				</div>
-			</Provider>
-		</BrowserRouter>
+			)}
+		</>
 	);
 }
 

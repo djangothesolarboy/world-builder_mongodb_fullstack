@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, Redirect, useParams } from 'react-router-dom';
+import { Link, NavLink, Redirect, useParams, Route } from 'react-router-dom';
 
 import * as charActions from '../../store/char';
+import CharPage from '../CharPage/CharPage';
 
 import './HomePage.css';
 
@@ -20,8 +21,9 @@ function HomePage({ data }) {
             <div className='char-section_container'>
                 <div className='char-section'>
                     {chars && chars.map((char) => 
-                        <Link key={char.name} className='chars-list char-link' to={`/characters/${char._id}`}>
+                        <Link key={char._id} className='chars-list char-link' to={`/characters/${char._id}`}>
                             {char.name}
+                            {/* <CharPage/> */}
                         </Link>
                     )}
                 </div>

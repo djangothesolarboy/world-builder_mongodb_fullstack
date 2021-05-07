@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 // import routes
 const charRouter = require('./routes/api/characters');
@@ -18,6 +19,8 @@ mongoose
 .catch(err => console.log(err))
 
 app.use(cors());
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
 app.use(session({
     secret: process.env.SECRET,

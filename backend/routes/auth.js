@@ -1,5 +1,8 @@
 const jwt = require('jsonwebtoken');
+const { jwtConfig } = require('../config/config');
 const { User } = require('../models/user');
+
+const { secret, expiresIn } = jwtConfig;
 
 // sends a JWT cookie
 const setTokenCookie = (res, user) => {
@@ -10,14 +13,14 @@ const setTokenCookie = (res, user) => {
         { expiresIn: 604800 }, // 604800 seconds = 1 week
     );
 
-    // const isProduction = process.env.NODE_ENV === 'production';
+    const isProduction = process.env.NODE_ENV === 'production';
 
     // set the token cookie
     res.cookie('token', token, {
         maxAge: 604800 * 1000, // maxAge in milliseconds
         httpOnly: true,
-        // secure: isProduction,
-        // sameSite: isProduction && 'Lax',
+        secure: isProduction,
+        sameSite: isProduction && 'Lax',
     });
 
     return token;
@@ -27,7 +30,7 @@ const restoreUser = (req, res, next) => {
     // token parsed from cookies
     const { token } = req.cookies;
 
-    return jwt.verify(token, process.env.SECRET, null, async (err, jwtPayload) => {
+    return jwt.verify(token, secret, null, async (err, jwtPayload) => {
         if (err) {
             return next();
         }

@@ -5,7 +5,6 @@ const asyncHandler = require('express-async-handler');
 
 const User = require('../../models/user');
 const { signupValidation, loginValidation } = require('../../validation');
-// const is_logged_in = require('../verify');
 const { setTokenCookie, restoreUser } = require('../auth');
 
 // SIGNUP router
@@ -43,21 +42,17 @@ router.post('/login',
         if (error) return res.status(400).send(error.details[0].message);
 
         // check if user's email is in registered in database
-        const user = await User.findOne({ email: req.body.email });
-        if (!user) return res.status(400).send('Email or password is incorrect.');
+        const emailCheck = await User.findOne({ email: req.body.email });
+        if (!emailCheck) return res.status(400).send('Email or password is incorrect.');
 
         // check if user's password is correct
-        const validPass = await bcrypt.compare(req.body.password, user.password);
+        const validPass = await bcrypt.compare(req.body.password, emailCheck.password);
         if (!validPass) return res.status(400).send('Invalid password.');
 
-        setTokenCookie(res, user);
-        // res.json({
-        //     error: null,
-        //     user: user,
-        //     token: token
-        // })
+        const user = await User.findOne({ email: req.body.email });
 
-        // req.session._id = token;
+        setTokenCookie(res, user);
+
         return res.json({ user });
     })
 );
@@ -77,7 +72,7 @@ router.get('/',
         const { user } = req;
         if (user) {
             return res.json({
-                user: user.toSafeObject()
+                _id: user._id
             });
         } else return res.json({});
     })

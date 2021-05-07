@@ -1,100 +1,75 @@
-import axios from 'axios';
 
-const SET_USER = 'user/setUser';
-const REMOVE_USER = 'user/removeUser';
+import React from 'react';
+import { fetch } from './fetch';
 
-const setUser = (user) => ({
-    type: SET_USER,
-    payload: user
-})
+const SET_USER = 'session/setUser';
+const REMOVE_USER = 'session/removeUser';
 
-const removeUser = () => ({
-    type: REMOVE_USER
-});
+function setUser(user) {
+    return {
+        type: SET_USER,
+        payload: user,
+    };
+};
+
+function removeUser() {
+    return {
+        type: REMOVE_USER,
+    };
+};
 
 export const signup = (user) => async (dispatch) => {
-    try {
-        const { username, email, password } = user;
-        const res = await axios({
-            method: 'post',
-            url: 'http://localhost:5000/api/users/signup',
-            data: {
-                username,
-                email,
-                password
-            },
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: "include",
-        })
-        dispatch(setUser(res.data.user));
-        return res;
-    } catch (e) {
-        console.log(e);
-    }
-}
-
-// export const post=()=>{
-    //     if(!localStorage.getItem("token"))
-    //     {
-        
-        //     }
-        
-        //     axios.post("api/post",{
-            //         thread:"im gay",
-            //         user:"asdasd",
-            //         token:localStorage.getItem("token")
-            //     },function(){
-                
-                //     });
-                // }
-                
-export const login = (user) => async (dispatch) => {
-    try {
-        const { email, password } = user;
-        const res = await axios({
-            method: 'post',
-            url: `http://localhost:5000/api/users/login`,
-            data: {
-                email,
-                password
-            },
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: "include",
-        });
-        // if (!res.data.data.token) return alert('You a dumb dumb.');
-        localStorage.setItem('token', res.data.token);
-        dispatch(setUser(res.data.user));
-    } catch (e) {
-        console.log(e);
-    }
-}
-
-export const logout = () => async (dispatch) => {
-    try {
-        const res = await fetch(`http://localhost:5000/api/users/logout`, {
-            method: "DELETE"
-        });
-        localStorage.removeItem('token');
-        dispatch(removeUser());
-        return res;
-    } catch (e) {
-        console.log(e);
-    }
-}
-
-export const restoreUser = () => async dispatch => {
-    const res = await axios.get('http://localhost:5000/api/users');
+    const { username, email, password } = user;
+    const res = await fetch('http://localhost:5000/api/users/signup', {
+        method: 'POST',
+        body: JSON.stringify({
+            username,
+            email,
+            password,
+        }),
+    });
     dispatch(setUser(res.data.user));
     return res;
 }
 
+export const login = (user) => async (dispatch) => {
+    const { email, password } = user;
+    const res = await fetch('http://localhost:5000/api/users/login', {
+        method: 'POST',
+        body: JSON.stringify({
+            email,
+            password,
+        }),
+    });
+    dispatch(setUser(res.data.user));
+    return res;
+}
 
-// reducer
-const userReducer = (state = { user: null }, action) => {
+export const demoLogin = () => async (dispatch) => {
+    let email = "Demo-lition";
+    let password = "password";
+    const response = await fetch('http://localhost:5000/api/users/login', {
+        method: 'POST',
+        body: JSON.stringify({
+            email,
+            password,
+        }),
+    });
+    dispatch(setUser(response.data.user));
+    return response;
+};
+
+export const logout = () => async (dispatch) => {
+    const res = await fetch('http://localhost:5000/api/users/logout', {
+        method: 'DELETE',
+    });
+    dispatch(removeUser());
+    return res;
+}
+
+const initialState = { user: null };
+
+const userReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case SET_USER:
@@ -108,6 +83,12 @@ const userReducer = (state = { user: null }, action) => {
         default:
             return state;
     }
+};
+
+export const restoreUser = () => async dispatch => {
+    const res = await fetch('http://localhost:5000/api/users');
+    dispatch(setUser(res.data.user));
+    return res;
 }
 
 export default userReducer;
