@@ -21,11 +21,13 @@ function HomePage({ data }) {
             <div className='char-section_container'>
                 <div className='char-section'>
                     {chars && chars.map((char) => 
-                        <Link key={char._id} className='chars-list char-link' to={`/characters/${char._id}`}>
-                            {char.name}
-                            {/* <CharPage/> */}
-                        </Link>
+                        <div className='char' key={char._id}>
+                            <Link className='chars-list char-link' to={`/characters/${char._id}`}>
+                                {char.name}
+                            </Link>
+                        </div>
                     )}
+                    <p>{data}</p>
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { fetch } from './fetch';
 
 const GET_CHARS = 'chars/all';
 const USER_CHAR = 'char/one';
@@ -77,27 +78,29 @@ export const updateCharacters = character => async dispatch => {
     }
 };
 
-export const getUserChar = (character_id) => async dispatch => {
+export const getUserChar = (characterId) => async dispatch => {
     try {
-        console.log('id -->', character_id)
         const res = await axios({
             method: 'get',
-            url: `http://localhost:5000/api/characters/${character_id}`, 
+            url: `http://localhost:5000/api/characters/${characterId}`, 
             params: {
-                _id: character_id
+                _id: characterId
             }
         });
-        console.log('char -->', res.data.character)
-        dispatch(userChar(res.data.character));
+        dispatch(userChar(res.data));
     } catch (err) {
         console.log(err);
     }
 };
 
-export const deleteCharacter = id => async dispatch => {
+export const deleteCharacter = (characterId) => async dispatch => {
     try {
-        const res = await axios.delete(`http://localhost:5000/api/characters/${id}`);
-        dispatch(delChar(res.data));
+        const res = await fetch(`http://localhost:5000/api/characters/${characterId}`, {
+            method: 'DELETE'
+        });
+        console.log('store delete', res)
+        dispatch(delChar());
+        return res;
     } catch (err) {
         console.log(err);
     }

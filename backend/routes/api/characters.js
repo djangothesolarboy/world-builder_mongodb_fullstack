@@ -3,6 +3,9 @@ const router = express.Router();
 
 const Character = require('../../models/character');
 const verify = require('../verify');
+const {
+    ObjectId
+} = require('mongodb');
 
 // get all characters
 router.get('/', (req, res) => {
@@ -80,23 +83,39 @@ router.post('/new', (req, res) => {
 });
 
 // view one character
-router.get('/:character_id', (req, res) => {
-    const character = Character.findById({ _id: req.params.character_id })
+router.get('/:characterId', (req, res) => {
+    const character = Character.findById({ _id: req.params.characterId })
         .then(character => res.json(character))
         .catch(err => res.status(404).json(err))
 })
 
+// FIXME delete route not working at all
 // delete a character
-router.delete('/:character_id', verify, (req, res) => {
-    Character.findOneAndDelete({ _id: req.params.character_id })
-        .then(character => res.json(character))
-        .catch(err => res.status(404).json(err))
+router.delete('/:characterId', verify, (req, res) => {
+    console.log('char id ->', req.params.characterId)
+    const query = { "_id": req.params.characterId };
+
+
+    // const query = { "name": "lego" };
+    Character.deleteOne(query)
+        .then(result => console.log(`Deleted ${result.deletedCount} item.`))
+        .catch(err => console.error(`Delete failed with error: ${err}`))
+    // return Character.deleteOne({ _id: req.params.characterId })
+    //     .then(() => {
+    //         res.status(200).json({
+    //             message: 'Deleted!'
+    //         })
+    //     })
+    //     .catch(err => res.status(400).json({ err: err }))
+    // Character.findOneAndDelete({ _id: ObjectId(req.params.characterId) })
+    //     .then(character => res.json(character))
+    //     .catch(err => res.status(404).json(err))
 });
 
 // edit a character
-router.patch('/:character_id', verify, (req, res) => {
-    Character.findOneAndUpdate({ _id: req.params.character_id }, { $set: req.body }, { new: true, useFindAndModify: false })
-        .then(character => res.json({ _id: req.params.character_id }))
+router.patch('/:characterId', verify, (req, res) => {
+    Character.findOneAndUpdate({ _id: ObjectId(req.params.characterId) }, { $set: req.body }, { new: true, useFindAndModify: false })
+        .then(character => res.json({ _id: req.params.characterId }))
         .catch(err => res.status(404).json(err))
 });
 

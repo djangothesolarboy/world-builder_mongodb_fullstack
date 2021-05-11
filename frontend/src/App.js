@@ -27,23 +27,25 @@ function App({ store }) {
 			<header>ಥ_ಥ</header>
 			<Navigation isLoaded={isLoaded}/>
 			{isLoaded && (
-				<Switch>
-					<Route path='/characters/new'>
-						<CharFormPage/>
-					</Route>
-					<Route path='/characters'>
-						<HomePage/>
-					</Route>
-					<Route path='/characters/:character_id'>
-						<CharPage/>
-					</Route>
-					<Route className='route-link login' path='/login'>
-						<LoginForm/>
-					</Route>
-					<Route className='route-link signup' path='/signup'>
-						<SignupForm/>
-					</Route>
-				</Switch>
+				<>
+					<Switch>
+						<Route exact path='/characters/:characterId'>
+							<CharPage/>
+						</Route>
+						<Route exact path='/characters/new'>
+							<CharFormPage/>
+						</Route>
+						<Route exact path='/characters'>
+							<HomePage/>
+						</Route>
+						<Route className='route-link login' path='/login'>
+							<LoginForm/>
+						</Route>
+						<Route className='route-link signup' path='/signup'>
+							<SignupForm/>
+						</Route>
+					</Switch>
+				</>
 			)}
 		</>
 	);

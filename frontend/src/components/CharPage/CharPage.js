@@ -9,26 +9,34 @@ import './CharPage.css';
 
 function CharPage({ data }) {
     const dispatch = useDispatch();
-    const { character_id } = useParams();
+    const { characterId } = useParams();
 
     const sessionUser = useSelector((state) => state.session.user);
     const userId = useSelector((state) => state.session.user);
 
     const char = useSelector((state) => state.characters.character);
 
-    console.log('char id -->', character_id)
-
     useEffect(() => {
-        dispatch(charActions.getUserChar(character_id))
-    }, [dispatch, character_id]);
+        dispatch(charActions.getUserChar(characterId))
+    }, [dispatch, characterId]);
 
     const handleCharDelete = (e) => {
         e.preventDefault();
 
-        if (char.userId === sessionUser.id || sessionUser.username === 'admin') {
-            dispatch(charActions.deleteCharacter(userId, character_id));
+        if (char.userId === sessionUser.id || sessionUser.username === '_admin_') {
+            console.log('delete pressed')
+            dispatch(charActions.deleteCharacter(userId, characterId));
         } else {
             alert("You cannot delete things that aren't yours!");
+        }
+    }
+
+    const handleCharEdit = (e) => {
+        e.preventDefault();
+        if (char.userId === sessionUser.id || sessionUser.username === '_admin_') {
+            dispatch(charActions.updateCharacters(char));
+        } else {
+            alert("You cannot edit things that aren't yours!");
         }
     }
 
@@ -36,11 +44,56 @@ function CharPage({ data }) {
         <div className='char-page-container'>
             <div className='char'>
                 <p>
-                    {char.name}<br/>
-                    {char.age}<br/>
-                    {char.bio}<br/>
-                    {char.height}<br/>
+                    {char.name}
+                    {char.bio}
+                    {char.age}
+                    {char.userId}
+                    {char.gender}
+                    {char.height}
+                    {char.bodyType}
+                    {char.hairColor}
+                    {char.race}
+                    {char.personality}
+                    {char.motivation}
+                    {char.posture}
+                    {char.facialHair}
+                    {char.eyes}
+                    {char.behavior}
+                    {char.dailyLife}
+                    {char.quirks}
+                    {char.fatalFlaw}
+                    {char.talents}
+                    {char.skills}
+                    {char.occupation}
+                    {char.hobbies}
+                    {char.wounds}
+                    {char.fearOne}
+                    {char.fearTwo}
+                    {char.fearThree}
+                    {char.fearFour}
+                    {char.fearFive}
+                    {char.fearSix}
+                    {char.positiveTraits}
+                    {char.negativeTraits}
+                    {char.idle}
+                    {char.stressed}
+                    {char.exhausted}
+                    {char.inebriated}
+                    {char.anxious}
+                    {char.distracted}
+                    {char.attraction}
+                    {char.aroused}
+                    {char.anger}
+                    {char.provoke}
+                    {char.overreact}
+                    {char.denial}
+                    {char.negCoping}
+                    {char.posCoping}
+                    {char.outerMot}
+                    {char.innerMotGen}
+                    {char.innerMotSpec}
                 </p>
+                <button className='delete-char-button' onClick={handleCharDelete}>Delete Character</button>
             </div>
         </div>
     )
