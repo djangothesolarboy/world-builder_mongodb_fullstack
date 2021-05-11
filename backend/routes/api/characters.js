@@ -6,6 +6,7 @@ const verify = require('../verify');
 const {
     ObjectId
 } = require('mongodb');
+const Mongoose = require('mongoose');
 
 // get all characters
 router.get('/', (req, res) => {
@@ -91,29 +92,23 @@ router.get('/:characterId', (req, res) => {
 
 // FIXME delete route not working at all
 // delete a character
-router.delete('/:characterId', verify, (req, res) => {
-    console.log('char id ->', req.params.characterId)
-    const query = { "_id": req.params.characterId };
+router.delete('/delete/:characterId', async (req, res) => {
+    const id = ObjectId(req.params.characterId);
 
-
-    // const query = { "name": "lego" };
-    Character.deleteOne(query)
-        .then(result => console.log(`Deleted ${result.deletedCount} item.`))
-        .catch(err => console.error(`Delete failed with error: ${err}`))
-    // return Character.deleteOne({ _id: req.params.characterId })
-    //     .then(() => {
-    //         res.status(200).json({
-    //             message: 'Deleted!'
-    //         })
-    //     })
-    //     .catch(err => res.status(400).json({ err: err }))
-    // Character.findOneAndDelete({ _id: ObjectId(req.params.characterId) })
+    // Character.findByIdAndRemove(id, { useFindAndModify: false })
     //     .then(character => res.json(character))
     //     .catch(err => res.status(404).json(err))
+
+    try {
+        const delChar = await Character.remove({ _id: req.params.characterId });
+        res.json(delChar);
+    } catch (e) {
+        res.json({ message: e })
+    }
 });
 
 // edit a character
-router.patch('/:characterId', verify, (req, res) => {
+router.patch('/edit/:characterId', verify, (req, res) => {
     return Character.findOneAndUpdate({ _id: ObjectId(req.params.characterId) }, { $set: req.body }, { new: true, useFindAndModify: false })
         .then(character => res.json({ _id: req.params.characterId }))
         .catch(err => res.status(404).json(err))

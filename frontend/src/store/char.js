@@ -95,7 +95,7 @@ export const getUserChar = (characterId) => async dispatch => {
 
 export const deleteCharacter = (characterId) => async dispatch => {
     try {
-        const res = await fetch(`http://localhost:5000/api/characters/${characterId}`, {
+        const res = await fetch(`http://localhost:5000/api/characters/delete/${characterId}`, {
             method: 'DELETE'
         });
         console.log('store delete', res)
