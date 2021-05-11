@@ -114,7 +114,7 @@ router.delete('/:characterId', verify, (req, res) => {
 
 // edit a character
 router.patch('/:characterId', verify, (req, res) => {
-    Character.findOneAndUpdate({ _id: ObjectId(req.params.characterId) }, { $set: req.body }, { new: true, useFindAndModify: false })
+    return Character.findOneAndUpdate({ _id: ObjectId(req.params.characterId) }, { $set: req.body }, { new: true, useFindAndModify: false })
         .then(character => res.json({ _id: req.params.characterId }))
         .catch(err => res.status(404).json(err))
 });
