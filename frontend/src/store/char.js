@@ -95,10 +95,13 @@ export const getUserChar = (characterId) => async dispatch => {
 
 export const deleteCharacter = (characterId) => async dispatch => {
     try {
-        const res = await fetch(`http://localhost:5000/api/characters/delete/${characterId}`, {
-            method: 'DELETE'
+        const res = await axios({
+            method: 'DELETE',
+            url: `http://localhost:5000/api/characters/delete`, 
+            params: {
+                _id: characterId
+            }
         });
-        console.log('store delete', res)
         dispatch(delChar());
         return res;
     } catch (err) {
@@ -118,8 +121,11 @@ const charReducer = (state = { characters: [], character: {} }, action) => {
         case NEW_CHAR:
             return { ...state, character: action.payload };
         case DEL_CHAR:
-            newState = state.filter(character => character === action.payload);
-            return newState;
+            return state;
+            // return {};
+            // newState = Object.assign({}, state);
+            // newState.character = null;
+            // return newState;
         default:
             return state;
     }

@@ -118,7 +118,7 @@ function CharFormPage() {
     }
 
     if (redirect) {
-        return <Redirect to='/'/>
+        return <Redirect to='/characters'/>
     }
 
     const handleChange = (e) => {

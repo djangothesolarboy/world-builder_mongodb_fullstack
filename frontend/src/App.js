@@ -29,14 +29,14 @@ function App({ store }) {
 			{isLoaded && (
 				<>
 					<Switch>
-						<Route exact path='/characters/:characterId'>
-							<CharPage/>
-						</Route>
-						<Route exact path='/characters/new'>
-							<CharFormPage/>
-						</Route>
 						<Route exact path='/characters'>
 							<HomePage/>
+						</Route>
+						<Route path='/characters/new'>
+							<CharFormPage/>
+						</Route>
+						<Route exact path='/characters/:characterId'>
+							<CharPage/>
 						</Route>
 						<Route className='route-link login' path='/login'>
 							<LoginForm/>

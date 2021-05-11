@@ -92,19 +92,10 @@ router.get('/:characterId', (req, res) => {
 
 // FIXME delete route not working at all
 // delete a character
-router.delete('/delete/:characterId', async (req, res) => {
-    const id = ObjectId(req.params.characterId);
-
-    // Character.findByIdAndRemove(id, { useFindAndModify: false })
-    //     .then(character => res.json(character))
-    //     .catch(err => res.status(404).json(err))
-
-    try {
-        const delChar = await Character.remove({ _id: req.params.characterId });
-        res.json(delChar);
-    } catch (e) {
-        res.json({ message: e })
-    }
+router.delete('/delete', async (req, res) => {
+    Character.deleteOne({ _id: req.query._id })
+        .then(character => res.json(character))
+        .catch(err => res.status(404).json(err))
 });
 
 // edit a character

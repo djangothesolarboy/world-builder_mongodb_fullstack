@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, useHistory, useParams } from 'react-router-dom';
 
 import * as sessionActions from '../../store/user';
 import * as charActions from '../../store/char';
@@ -10,22 +10,25 @@ import './CharPage.css';
 function CharPage({ data }) {
     const dispatch = useDispatch();
     const { characterId } = useParams();
+    const history = useHistory();
 
     const sessionUser = useSelector((state) => state.session.user);
     const userId = useSelector((state) => state.session.user);
-
     const char = useSelector((state) => state.characters.character);
 
     useEffect(() => {
         dispatch(charActions.getUserChar(characterId))
     }, [dispatch, characterId]);
+    
+
 
     const handleCharDelete = (e) => {
         e.preventDefault();
 
         if (char.userId === sessionUser.id || sessionUser.username === '_admin_') {
             console.log('delete pressed')
-            dispatch(charActions.deleteCharacter(userId, characterId));
+            dispatch(charActions.deleteCharacter(characterId));
+            history.push('/characters');
         } else {
             alert("You cannot delete things that aren't yours!");
         }
