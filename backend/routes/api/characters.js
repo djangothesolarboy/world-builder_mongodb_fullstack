@@ -88,58 +88,6 @@ router.delete('/delete', verify, async (req, res) => {
 
 // edit a character
 router.patch('/edit', (req, res) => {
-    const update = {
-        "$set": {
-        name: req.body.name,
-        bio: req.body.bio,
-        age: req.body.age,
-        gender: req.body.gender,
-        height: req.body.height,
-        bodyType: req.body.bodyType,
-        hairColor: req.body.hairColor,
-        race: req.body.race,
-        personality: req.body.personality,
-        motivation: req.body.motivation,
-        posture: req.body.posture,
-        facialHair: req.body.facialHair,
-        eyes: req.body.eyes,
-        behavior: req.body.behavior,
-        dailyLife: req.body.dailyLife,
-        quirks: req.body.quirks,
-        fatalFlaw: req.body.fatalFlaw,
-        talents: req.body.talents,
-        skills: req.body.skills,
-        occupation: req.body.occupation,
-        hobbies: req.body.hobbies,
-        wounds: req.body.wounds,
-        fearOne: req.body.fearOne,
-        fearTwo: req.body.fearTwo,
-        fearThree: req.body.fearThree,
-        fearFour: req.body.fearFour,
-        fearFive: req.body.fearFive,
-        fearSix: req.body.fearSix,
-        positiveTraits: req.body.positiveTraits,
-        negativeTraits: req.body.negativeTraits,
-        idle: req.body.idle,
-        stressed: req.body.stressed,
-        exhausted: req.body.exhausted,
-        inebriated: req.body.inebriated,
-        anxious: req.body.anxious,
-        distracted: req.body.distracted,
-        attraction: req.body.attraction,
-        aroused: req.body.aroused,
-        anger: req.body.anger,
-        provoke: req.body.provoke,
-        overreact: req.body.overreact,
-        denial: req.body.denial,
-        negCoping: req.body.negCoping,
-        posCoping: req.body.posCoping,
-        outerMot: req.body.outerMot,
-        innerMotGen: req.body.innerMotGen,
-        innerMotSpec: req.body.innerMotSpec
-        }
-    }
-
     return Character.updateOne({ _id: req.query._id }, {
         "$set": {
             name: req.body.name,

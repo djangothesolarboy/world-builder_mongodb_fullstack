@@ -72,7 +72,8 @@ export const submitCharacter = character => async dispatch => {
 export const updateCharacters = (characterId, character) => async dispatch => {
     try {
         const {
-            name, bio, age, userId, gender, height, bodyType, hairColor, race, personality, motivation, posture, facialHair, eyes, behavior, dailyLife, quirks, fatalFlaw, talents, skills, occupation, hobbies, wounds, fearOne, fearTwo, fearThree, fearFour, fearFive, fearSix, positiveTraits, negativeTraits, idle, stressed, exhausted, inebriated, anxious, distracted, attraction, aroused, anger, provoke, overreact, denial, negCoping, posCoping, outerMot, innerMotGen, innerMotSpec } = character;
+            name, bio, age, userId, gender, height, bodyType, hairColor, race, personality, motivation, posture, facialHair, eyes, behavior, dailyLife, quirks, fatalFlaw, talents, skills, occupation, hobbies, wounds, fearOne, fearTwo, fearThree, fearFour, fearFive, fearSix, positiveTraits, negativeTraits, idle, stressed, exhausted, inebriated, anxious, distracted, attraction, aroused, anger, provoke, overreact, denial, negCoping, posCoping, outerMot, innerMotGen, innerMotSpec 
+        } = character;
         const res = await axios({
             method: 'patch',
             url: `http://localhost:5000/api/characters/edit/`,
@@ -83,7 +84,8 @@ export const updateCharacters = (characterId, character) => async dispatch => {
                 name, bio, age, userId, gender, height, bodyType, hairColor, race, personality, motivation, posture, facialHair, eyes, behavior, dailyLife, quirks, fatalFlaw, talents, skills, occupation, hobbies, wounds, fearOne, fearTwo, fearThree, fearFour, fearFive, fearSix, positiveTraits, negativeTraits, idle, stressed, exhausted, inebriated, anxious, distracted, attraction, aroused, anger, provoke, overreact, denial, negCoping, posCoping, outerMot, innerMotGen, innerMotSpec
             }
         });
-        dispatch(editChar(res.data));
+        console.log('char ->', res.data);
+        dispatch(editChar());
     } catch (err) {
         console.log(err);
     }
@@ -132,12 +134,10 @@ const charReducer = (state = { characters: [], character: {} }, action) => {
             return { ...state, character: action.payload };
         case NEW_CHAR:
             return { ...state, character: action.payload };
+        case EDIT_CHAR:
+            return action.payload;
         case DEL_CHAR:
             return state;
-            // return {};
-            // newState = Object.assign({}, state);
-            // newState.character = null;
-            // return newState;
         default:
             return state;
     }
