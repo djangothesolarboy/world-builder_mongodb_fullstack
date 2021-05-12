@@ -450,6 +450,9 @@ function CharPage({ data }) {
         )
     }
 
+    // FIXME character information not displayed on initial click of edit
+    // displays info after navigating to other page, then back to character page edit
+    // character state is displayed in redux store
     const handleCharEdit = (e) => {
         e.preventDefault();
         dispatch(charActions.getUserChar(char._id));
