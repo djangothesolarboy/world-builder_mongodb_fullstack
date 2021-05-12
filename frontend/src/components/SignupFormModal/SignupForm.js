@@ -1,28 +1,31 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-// import * as sessionActions from "../../store/session";
+import { Redirect, useHistory } from "react-router-dom";
+import * as sessionActions from "../../store/user";
 import './SignupForm.css';
 
 function SignupForm() {
     const dispatch = useDispatch();
-    // const sessionUser = useSelector((state) => state.session.user);
+    const sessionUser = useSelector((state) => state.session.user);
+
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
+    const [redirect, setRedirect] = useState(false);
 
-    // if (sessionUser) return <Redirect to="/" />;
+    if (redirect) return <Redirect to='/characters'/>;
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password === confirmPassword) {
             setErrors([]);
-            // return dispatch(sessionActions.signup({ email, username, password }))
-            //     .catch(res => {
-            //         if (res.data && res.data.errors) setErrors(res.data.errors);
-            //     });
+            return dispatch(sessionActions.signup({ email, username, password }))
+                .then(() => setRedirect(true))
+                .catch(res => {
+                    if (res.data && res.data.errors) setErrors(res.data.errors);
+                });
         }
         return setErrors(['Confirm Password field must be the same as the Password field']);
     };

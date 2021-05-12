@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 import * as userActions from '../../store/user';
 
 function LoginForm() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -16,7 +17,7 @@ function LoginForm() {
     <Redirect to='/'/>
     return dispatch(userActions.login({ email, password }))
       .then(() => {
-        <Redirect to='/'/>
+        history.push('/characters')
       })
       .catch((res) => {
       if (res.data && res.data.errors) setErrors(res.data.errors);

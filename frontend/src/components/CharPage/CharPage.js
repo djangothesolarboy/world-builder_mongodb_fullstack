@@ -10,7 +10,8 @@ import './CharPage.css';
 function CharPage({ data }) {
     const dispatch = useDispatch();
     const { characterId } = useParams();
-    const history = useHistory();
+
+    const [redirect, setRedirect] = useState(false);
 
     const sessionUser = useSelector((state) => state.session.user);
     const userId = useSelector((state) => state.session.user);
@@ -20,7 +21,7 @@ function CharPage({ data }) {
         dispatch(charActions.getUserChar(characterId))
     }, [dispatch, characterId]);
     
-
+    if (redirect) return <Redirect to='/characters'/>;
 
     const handleCharDelete = (e) => {
         e.preventDefault();
@@ -28,7 +29,7 @@ function CharPage({ data }) {
         if (char.userId === sessionUser.id || sessionUser.username === '_admin_') {
             console.log('delete pressed')
             dispatch(charActions.deleteCharacter(characterId));
-            history.push('/characters');
+            setRedirect(true);
         } else {
             alert("You cannot delete things that aren't yours!");
         }

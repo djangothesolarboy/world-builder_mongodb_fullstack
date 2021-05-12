@@ -28,9 +28,15 @@ router.post('/signup', async (req, res) => {
         email: req.body.email,
         password: hashedPassword
     });
+
     try {
-        const savedUser = await user.save();
-        res.send({ userId: user._id });
+        const savedUser = await user.save()
+            .catch((e) => res.status(400).json({ message: e }))
+        const newUser = await User.findOne({ email: req.body.email });
+        // res.send({ userId: user._id });
+        setTokenCookie(res, newUser);
+        res.send({ newUser });
+        return res.json({ newUser });
     } catch (e) {
         res.status(400).send(e);
     }

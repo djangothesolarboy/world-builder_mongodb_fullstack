@@ -28,7 +28,7 @@ export const signup = (user) => async (dispatch) => {
             password,
         }),
     });
-    dispatch(setUser(res.data.user));
+    dispatch(setUser(res.data.newUser));
     return res;
 }
 

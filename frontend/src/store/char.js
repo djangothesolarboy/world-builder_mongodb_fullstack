@@ -64,6 +64,7 @@ export const submitCharacter = character => async dispatch => {
             }
         });
         dispatch(userChar(res.data));
+        return res;
     } catch (err) {
         console.log(err);
     }
@@ -88,6 +89,7 @@ export const getUserChar = (characterId) => async dispatch => {
             }
         });
         dispatch(userChar(res.data));
+        return res;
     } catch (err) {
         console.log(err);
     }

@@ -10,6 +10,8 @@ import './HomePage.css';
 function HomePage({ data }) {
     const dispatch = useDispatch();
 
+    const [value, setValue] = useState();
+
     const sessionUser = useSelector((state) => state.session.user);
     const chars = useSelector((state) => state.characters.characters);
     useEffect(() => {
