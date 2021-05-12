@@ -1,5 +1,5 @@
 ### Create a question
-POST http://127.0.0.1:5000/api/characters
+POST http://127.0.0.1:5000/api/characters/new
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ DELETE http://127.0.0.1:5000/api/characters/6088ee224c6cee10f9d6d6bf
 Content-Type: application/json
 
 ### Edit question
-PATCH http://127.0.0.1:5000/api/characters/6088ee354c6cee10f9d6d6c0
+PATCH http://127.0.0.1:5000/api/characters/edit
 Content-Type: application/json
 
 {

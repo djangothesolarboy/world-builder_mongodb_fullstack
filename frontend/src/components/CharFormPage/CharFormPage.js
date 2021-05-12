@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import './CharFormPage.css';
-import { createChar, submitCharacter } from '../../store/char';
+import { fetchCharacters, submitCharacter } from '../../store/char';
 
 function CharFormPage() {
     const userId = useSelector((state) => state.session.user._id);
@@ -118,7 +118,8 @@ function CharFormPage() {
     }
 
     if (redirect) {
-        return <Redirect to='/characters'/>
+        dispatch(fetchCharacters());
+        return <Redirect to='/characters'/>;
     }
 
     const handleChange = (e) => {

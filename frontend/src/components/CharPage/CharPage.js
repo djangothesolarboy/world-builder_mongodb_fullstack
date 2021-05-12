@@ -19,6 +19,7 @@ function CharPage({ data }) {
 
     useEffect(() => {
         dispatch(charActions.getUserChar(characterId))
+        dispatch(charActions.fetchCharacters())
     }, [dispatch, characterId]);
     
     if (redirect) return <Redirect to='/characters'/>;
@@ -27,8 +28,8 @@ function CharPage({ data }) {
         e.preventDefault();
 
         if (char.userId === sessionUser.id || sessionUser.username === '_admin_') {
-            console.log('delete pressed')
             dispatch(charActions.deleteCharacter(characterId));
+            dispatch(charActions.fetchCharacters());
             setRedirect(true);
         } else {
             alert("You cannot delete things that aren't yours!");

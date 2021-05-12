@@ -7,7 +7,6 @@ const User = require('../../models/user');
 const { signupValidation, loginValidation } = require('../../validation');
 const { setTokenCookie, restoreUser } = require('../auth');
 
-// FIXME signup not working -> validation(email, password match)
 // SIGNUP router
 router.post('/signup', async (req, res) => {
     // validate data before user creation

@@ -63,16 +63,26 @@ export const submitCharacter = character => async dispatch => {
                 name, bio, age, userId, gender, height, bodyType, hairColor, race, personality, motivation, posture, facialHair, eyes, behavior, dailyLife, quirks, fatalFlaw, talents, skills, occupation, hobbies, wounds, fearOne, fearTwo, fearThree, fearFour, fearFive, fearSix, positiveTraits, negativeTraits, idle, stressed, exhausted, inebriated, anxious, distracted, attraction, aroused, anger, provoke, overreact, denial, negCoping, posCoping, outerMot, innerMotGen, innerMotSpec
             }
         });
-        dispatch(userChar(res.data));
-        return res;
+        return dispatch(newChar(res.data));
     } catch (err) {
         console.log(err);
     }
 };
 
-export const updateCharacters = character => async dispatch => {
+export const updateCharacters = (characterId, character) => async dispatch => {
     try {
-        const res = await axios.patch('http://localhost:5000/api/characters', character);
+        const {
+            name, bio, age, userId, gender, height, bodyType, hairColor, race, personality, motivation, posture, facialHair, eyes, behavior, dailyLife, quirks, fatalFlaw, talents, skills, occupation, hobbies, wounds, fearOne, fearTwo, fearThree, fearFour, fearFive, fearSix, positiveTraits, negativeTraits, idle, stressed, exhausted, inebriated, anxious, distracted, attraction, aroused, anger, provoke, overreact, denial, negCoping, posCoping, outerMot, innerMotGen, innerMotSpec } = character;
+        const res = await axios({
+            method: 'patch',
+            url: `http://localhost:5000/api/characters/edit/`,
+            params: {
+                _id: characterId
+            },
+            data: {
+                name, bio, age, userId, gender, height, bodyType, hairColor, race, personality, motivation, posture, facialHair, eyes, behavior, dailyLife, quirks, fatalFlaw, talents, skills, occupation, hobbies, wounds, fearOne, fearTwo, fearThree, fearFour, fearFive, fearSix, positiveTraits, negativeTraits, idle, stressed, exhausted, inebriated, anxious, distracted, attraction, aroused, anger, provoke, overreact, denial, negCoping, posCoping, outerMot, innerMotGen, innerMotSpec
+            }
+        });
         dispatch(editChar(res.data));
     } catch (err) {
         console.log(err);
