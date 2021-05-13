@@ -24,7 +24,6 @@ function App({ store }) {
 
 	return (
 		<>
-			<header>ಥ_ಥ</header>
 			<Navigation isLoaded={isLoaded}/>
 			{isLoaded && (
 				<>

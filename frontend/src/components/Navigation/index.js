@@ -19,21 +19,21 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <>
-        <NavLink className='nav-link home' to="/">Home</NavLink><br/>
-        <ProfileButton user={sessionUser}/>
-        <NavLink to='/characters/new'>
-          New Character
-        </NavLink><br/>
-        <NavLink to='/characters'>Characters</NavLink>
-      </>
+      <div className='nav-container'>
+        <div className='nav'>
+          <NavLink className='nav-link home' to="/characters">Home</NavLink>
+          <ProfileButton className='nav-link profile' user={sessionUser}/>
+          <NavLink className='nav-link new-char' to='/characters/new'>
+            New Character
+          </NavLink>
+        </div>
+      </div>
     )
   } else {
     sessionLinks = (
       <>
-        <NavLink className='nav-link home' exact to="/">Home</NavLink><br/>
         <NavLink to='/login'>
-          <LoginFormModal />
+          <LoginFormModal/>
         </NavLink>
         <NavLink to='/signup'>
           <SignupFormModal/>

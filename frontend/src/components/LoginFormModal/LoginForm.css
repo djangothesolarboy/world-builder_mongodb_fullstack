@@ -1,0 +1,72 @@
+.login {
+    align-self: center;
+    height: 40px;
+    width: 60px;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 12px;
+    border-radius: 5px;
+    list-style-type: none;
+    background-color: rgba(255, 255, 255, 0.438);
+    color: black;
+	font-family: 'Big Shoulders Display', cursive;
+}
+
+.modal-content {
+    display: flex;
+    height: 200px;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.438);
+    border-radius: 5px;
+    justify-content: center;
+    padding: 20px;
+	font-family: 'Big Shoulders Display', cursive;
+}
+
+.login-form-submit,
+.login,
+.demo-login {
+    padding: 5px;
+    width: 60px;
+    height: 40px;
+    background-color: white;
+    border-radius: 5px;
+	font-family: 'Big Shoulders Display', cursive;
+}
+
+.demo-container {
+    display: flex;
+    justify-content: center;
+}
+
+.login-form-submit:hover,
+.login:hover {
+    color: white;
+    background-color: black;
+}
+
+.login-form-username-container, 
+.login-form-password-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.login-form-username-label,
+.login-form-password-label {
+    padding: 10px;
+}
+
+.login-form-input,
+.login-form-submit-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.login-errors {
+    color: red;
+    padding: 10px;
+	font-family: 'Big Shoulders Display', cursive;
+    font-weight: bold;
+}

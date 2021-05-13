@@ -46,17 +46,17 @@ export const login = (user) => async (dispatch) => {
 }
 
 export const demoLogin = () => async (dispatch) => {
-    let email = "Demo-lition";
+    let email = "demo@demo.io";
     let password = "password";
-    const response = await fetch('http://localhost:5000/api/users/login', {
+    const res = await fetch('http://localhost:5000/api/users/login', {
         method: 'POST',
         body: JSON.stringify({
             email,
             password,
         }),
     });
-    dispatch(setUser(response.data.user));
-    return response;
+    dispatch(setUser(res.data.user));
+    return res;
 };
 
 export const logout = () => async (dispatch) => {

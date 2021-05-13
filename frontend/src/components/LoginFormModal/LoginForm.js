@@ -14,7 +14,7 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    <Redirect to='/'/>
+    <Redirect to='/characters'/>
     return dispatch(userActions.login({ email, password }))
       .then(() => {
         history.push('/characters')
@@ -24,7 +24,17 @@ function LoginForm() {
     });
   };
   
-  
+  const demo = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(userActions.demoLogin())
+      .then(() => {
+        history.push('/characters')
+      })
+      .catch((res) => {
+        if (res.data && res.data.errors) setErrors(res.data.errors);
+      });
+  };
 
   return (
     <>
@@ -54,6 +64,7 @@ function LoginForm() {
           />
         </label>
         <button type="submit">Login</button>
+        <button className='demo-button' onClick={demo}>Demo-login</button>
       </form>
     </>
   );
