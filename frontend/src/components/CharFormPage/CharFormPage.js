@@ -214,7 +214,7 @@ function CharFormPage() {
                 </div>
                 <div className='input-label-containers'>
                 <label className='input-label'>
-                    Behavior:
+                    Behavior/s:
                     <input name='behavior' value={state.behavior} onChange={handleChange} className='char-behavior-input'/>
                 </label>
                 </div>
@@ -226,25 +226,25 @@ function CharFormPage() {
                 </div>
                 <div className='input-label-containers'>
                 <label className='input-label'>
-                    Quirks:
+                    Quirk/s:
                     <input name='quirks' value={state.quirks} onChange={handleChange} className='char-quirks-input'/>
                 </label>
                 </div>
                 <div className='input-label-containers'>
                 <label className='input-label'>
-                    Fatal Flaw:
+                    Fatal Flaw/s:
                     <input name='fatalFlaw' value={state.fatalFlaw} onChange={handleChange} className='char-fatal_flaw-input'/>
                 </label>
                 </div>
                 <div className='input-label-containers'>
                 <label className='input-label'>
-                    Talents:
+                    Talent/s:
                     <input name='talents' value={state.talents} onChange={handleChange} className='char-talents-input'/>
                 </label>
                 </div>
                 <div className='input-label-containers'>
                 <label className='input-label'>
-                    Skills:
+                    Skill/s:
                     <input name='skills' value={state.skills} onChange={handleChange} className='char-skills-input'/>
                 </label>
                 </div>
@@ -316,55 +316,55 @@ function CharFormPage() {
                 </div>
                 <div className='input-label-containers'>
                 <label className='input-label'>
-                    When idle:
+                    When idle they will:
                     <input name='idle' value={state.idle} onChange={handleChange} className='char-idle-input'/>
                 </label>
                 </div>
                 <div className='input-label-containers'>
                 <label className='input-label'>
-                    When stressed:
+                    When stressed they will:
                     <input name='stressed' value={state.stressed} onChange={handleChange} className='char-stressed-input'/>
                 </label>
                 </div>
                 <div className='input-label-containers'>
                 <label className='input-label'>
-                    When exhausted:
+                    When exhausted they will:
                     <input name='exhausted' value={state.exhausted} onChange={handleChange} className='char-exhausted-input'/>
                 </label>
                 </div>
                 <div className='input-label-containers'>
                 <label className='input-label'>
-                    When inebriated:
+                    When inebriated they will:
                     <input name='inebriated' value={state.inebriated} onChange={handleChange} className='char-inebriated-input'/>
                 </label>
                 </div>
                 <div className='input-label-containers'>
                 <label className='input-label'>
-                    When anxious:
+                    When anxious they will:
                     <input name='anxious' value={state.anxious} onChange={handleChange} className='char-anxious-input'/>
                 </label>
                 </div>
                 <div className='input-label-containers'>
                 <label className='input-label'>
-                    When distracted:
+                    When distracted they will:
                     <input name='distracted' value={state.distracted} onChange={handleChange} className='char-distracted-input'/>
                 </label>
                 </div>
                 <div className='input-label-containers'>
                 <label className='input-label'>
-                    When attracted:
+                    When attracted to someone they will:
                     <input name='attraction' value={state.attraction} onChange={handleChange} className='char-attraction-input'/>
                 </label>
                 </div>
                 <div className='input-label-containers'>
                 <label className='input-label'>
-                    When aroused:
+                    When aroused they will:
                     <input name='aroused' value={state.aroused} onChange={handleChange} className='char-aroused-input'/>
                 </label>
                 </div>
                 <div className='input-label-containers'>
                 <label className='input-label'>
-                    Quick to anger?:
+                    When they are angry they will:
                     <input name='anger' value={state.anger} onChange={handleChange} className='char-anger-input'/>
                 </label>
                 </div>

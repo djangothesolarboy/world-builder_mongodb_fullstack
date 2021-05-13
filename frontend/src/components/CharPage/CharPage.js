@@ -10,14 +10,8 @@ import './CharPage.css';
 function CharPage({ data }) {
     const dispatch = useDispatch();
     const { characterId } = useParams();
-
-    const [redirect, setRedirect] = useState(false);
-    const [submitRedirect, setSubmitRedirect] = useState(false);
-
-    const sessionUser = useSelector((state) => state.session.user);
-    const userId = useSelector((state) => state.session.user);
     const char = useSelector((state) => state.characters.character);
-    
+
     const [state, setState] = useState({
         name: char.name,
         bio: char.bio,
@@ -65,8 +59,15 @@ function CharPage({ data }) {
         posCoping: char.posCoping,
         outerMot: char.outerMot,
         innerMotGen: char.innerMotGen,
-        innerMotSpec: ''
+        innerMotSpec: char.innerMotSpec
     })
+
+    const [redirect, setRedirect] = useState(false);
+    const [submitRedirect, setSubmitRedirect] = useState(false);
+
+    const sessionUser = useSelector((state) => state.session.user);
+    const userId = useSelector((state) => state.session.user);
+    
     
     const [edit, setEdit] = useState(false);
     
@@ -98,7 +99,9 @@ function CharPage({ data }) {
         });
     }
 
-    console.log('state', state.name)
+    const handleCancel = () => {
+        setEdit(false);
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -163,265 +166,265 @@ function CharPage({ data }) {
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Name:
-                    <input name='name' placeholder={state.name} value={state.name} onChange={handleChange} className='char-name-input' required />
+                    <input name='name' value={state.name} onChange={handleChange} className='char-name-input' required />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Age:
-                    <input type='number' name='age' placeholder={state.age} value={state.age} onChange={handleChange} className='char-age-input' required />
+                    <input type='number' name='age' value={state.age} onChange={handleChange} className='char-age-input' required />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Bio:
-                    <textarea name='bio' placeholder={state.bio} value={state.bio} onChange={handleChange} className='char-bio-input' required />
+                    <textarea name='bio' value={state.bio} onChange={handleChange} className='char-bio-input' required />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Gender:
-                    <input name='gender' placeholder={state.gender} value={state.gender} onChange={handleChange} className='char-gender-input' required />
+                    <input name='gender' value={state.gender} onChange={handleChange} className='char-gender-input' required />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Height:
-                    <input name='height' placeholder={state.height} value={state.height} onChange={handleChange} className='char-height-input' required />
+                    <input name='height' value={state.height} onChange={handleChange} className='char-height-input' required />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Body Type:
-                    <input name='bodyType' placeholder={state.bodyType} value={state.bodyType} onChange={handleChange} className='char-bodyType-input' required />
+                    <input name='bodyType' value={state.bodyType} onChange={handleChange} className='char-bodyType-input' required />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Hair Color:
-                    <input name='hairColor' placeholder={state.hairColor} value={state.hairColor} onChange={handleChange} className='char-hairColor-input' required />
+                    <input name='hairColor' value={state.hairColor} onChange={handleChange} className='char-hairColor-input' required />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Race:
-                    <input name='race' placeholder={state.race} value={state.race} onChange={handleChange} className='char-race-input' />
+                    <input name='race' value={state.race} onChange={handleChange} className='char-race-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Personality:
-                    <input name='personality' placeholder={state.personality} value={state.personality} onChange={handleChange} className='char-personality-input' />
+                    <input name='personality' value={state.personality} onChange={handleChange} className='char-personality-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Motivation:
-                    <input name='motivation' placeholder={state.motivation} value={state.motivation} onChange={handleChange} className='char-motivation-input' />
+                    <input name='motivation' value={state.motivation} onChange={handleChange} className='char-motivation-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Posture:
-                    <input name='posture' placeholder={state.posture} value={state.posture} onChange={handleChange} className='char-posture-input' />
+                    <input name='posture' value={state.posture} onChange={handleChange} className='char-posture-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Facial Hair:
-                    <input name='facialHair' placeholder={state.facialHair} value={state.facialHair} onChange={handleChange} className='char-facial_hair-input' />
+                    <input name='facialHair' value={state.facialHair} onChange={handleChange} className='char-facial_hair-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Eyes:
-                    <input name='eyes' placeholder={state.eyes} value={state.eyes} onChange={handleChange} className='char-eyes-input' />
+                    <input name='eyes' value={state.eyes} onChange={handleChange} className='char-eyes-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
-                        Behavior:
-                    <input name='behavior' placeholder={state.behavior} value={state.behavior} onChange={handleChange} className='char-behavior-input' />
+                        Behavior/s:
+                    <input name='behavior' value={state.behavior} onChange={handleChange} className='char-behavior-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Daily Life:
-                    <input name='dailyLife' placeholder={state.dailyLife} value={state.dailyLife} onChange={handleChange} className='char-daily_life-input' />
+                    <input name='dailyLife' value={state.dailyLife} onChange={handleChange} className='char-daily_life-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
-                        Quirks:
-                    <input name='quirks' placeholder={state.quirks} value={state.quirks} onChange={handleChange} className='char-quirks-input' />
+                        Quirk/s:
+                    <input name='quirks' value={state.quirks} onChange={handleChange} className='char-quirks-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
-                        Fatal Flaw:
-                    <input name='fatalFlaw' placeholder={state.fatalFlaw} value={state.fatalFlaw} onChange={handleChange} className='char-fatal_flaw-input' />
+                        Fatal Flaw/s:
+                    <input name='fatalFlaw' value={state.fatalFlaw} onChange={handleChange} className='char-fatal_flaw-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
-                        Talents:
-                    <input name='talents' placeholder={state.talents} value={state.talents} onChange={handleChange} className='char-talents-input' />
+                        Talent/s:
+                    <input name='talents' value={state.talents} onChange={handleChange} className='char-talents-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
-                        Skills:
-                    <input name='skills' placeholder={state.skills} value={state.skills} onChange={handleChange} className='char-skills-input' />
+                        Skill/s:
+                    <input name='skills' value={state.skills} onChange={handleChange} className='char-skills-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Occupation:
-                    <input name='occupation' placeholder={state.occupation} value={state.occupation} onChange={handleChange} className='char-occupation-input' />
+                    <input name='occupation' value={state.occupation} onChange={handleChange} className='char-occupation-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Hobbies:
-                    <input name='hobbies' placeholder={state.hobbies} value={state.hobbies} onChange={handleChange} className='char-hobbies-input' />
+                    <input name='hobbies' value={state.hobbies} onChange={handleChange} className='char-hobbies-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Wounds:
-                    <input name='wounds' placeholder={state.wounds} value={state.wounds} onChange={handleChange} className='char-wounds-input' />
+                    <input name='wounds' value={state.wounds} onChange={handleChange} className='char-wounds-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         What situations will the character now avoid?:
-                    <input name='fearOne' placeholder={state.fearOne} value={state.fearOne} onChange={handleChange} className='char-' fear_one-input />
+                    <input name='fearOne' value={state.fearOne} onChange={handleChange} className='char-' fear_one-input />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         In what situations or settings will the character now feel threatened, unsafe, or vulnerable?:
-                    <input name='fearTwo' placeholder={state.fearTwo} value={state.fearTwo} onChange={handleChange} className='char-fear_two-input' />
+                    <input name='fearTwo' value={state.fearTwo} onChange={handleChange} className='char-fear_two-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         How does the character hide this fear from others?:
-                    <input name='fearThree' placeholder={state.fearThree} value={state.fearThree} onChange={handleChange} className='char-fear_three-input' />
+                    <input name='fearThree' value={state.fearThree} onChange={handleChange} className='char-fear_three-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         How does the fear impact the character’s relationships with others (negatively and/or positively)?:
-                    <input name='fearFour' placeholder={state.fearFour} value={state.fearFour} onChange={handleChange} className='char-fear_four-input' />
+                    <input name='fearFour' value={state.fearFour} onChange={handleChange} className='char-fear_four-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         How does the fear affect the character at work?:
-                    <input name='fearFive' placeholder={state.fearFive} value={state.fearFive} onChange={handleChange} className='char-fear_five-input' />
+                    <input name='fearFive' value={state.fearFive} onChange={handleChange} className='char-fear_five-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         How has the character’s fear diminished their self-esteem?:
-                    <input name='fearSix' placeholder={state.fearSix} value={state.fearSix} onChange={handleChange} className='char-fear_six-input' />
+                    <input name='fearSix' value={state.fearSix} onChange={handleChange} className='char-fear_six-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Positive Traits:
-                    <input name='positiveTraits' placeholder={state.positiveTraits} value={state.positiveTraits} onChange={handleChange} className='char-positive_traits-input' />
+                    <input name='positiveTraits' value={state.positiveTraits} onChange={handleChange} className='char-positive_traits-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Negative Traits:
-                    <input name='negativeTraits' placeholder={state.negativeTraits} value={state.negativeTraits} onChange={handleChange} className='char-negative_traits-input' />
+                    <input name='negativeTraits' value={state.negativeTraits} onChange={handleChange} className='char-negative_traits-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
-                        When idle:
-                    <input name='idle' placeholder={state.idle} value={state.idle} onChange={handleChange} className='char-idle-input' />
+                        When idle they will:
+                    <input name='idle' value={state.idle} onChange={handleChange} className='char-idle-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
-                        When stressed:
-                    <input name='stressed' placeholder={state.stressed} value={state.stressed} onChange={handleChange} className='char-stressed-input' />
+                        When stressed they will:
+                    <input name='stressed' value={state.stressed} onChange={handleChange} className='char-stressed-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
-                        When exhausted:
-                    <input name='exhausted' placeholder={state.exhausted} value={state.exhausted} onChange={handleChange} className='char-exhausted-input' />
+                        When exhausted they will:
+                    <input name='exhausted' value={state.exhausted} onChange={handleChange} className='char-exhausted-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
-                        When inebriated:
-                    <input name='inebriated' placeholder={state.inebriated} value={state.inebriated} onChange={handleChange} className='char-inebriated-input' />
+                        When inebriated they will:
+                    <input name='inebriated' value={state.inebriated} onChange={handleChange} className='char-inebriated-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
-                        When anxious:
-                    <input name='anxious' placeholder={state.anxious} value={state.anxious} onChange={handleChange} className='char-anxious-input' />
+                        When anxious they will:
+                    <input name='anxious' value={state.anxious} onChange={handleChange} className='char-anxious-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
-                        When distracted:
-                    <input name='distracted' placeholder={state.distracted} value={state.distracted} onChange={handleChange} className='char-distracted-input' />
+                        When distracted they will:
+                    <input name='distracted' value={state.distracted} onChange={handleChange} className='char-distracted-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
-                        When attracted:
-                    <input name='attraction' placeholder={state.attraction} value={state.attraction} onChange={handleChange} className='char-attraction-input' />
+                        When attracted to someone they will:
+                    <input name='attraction' value={state.attraction} onChange={handleChange} className='char-attraction-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
-                        When aroused:
-                    <input name='aroused' placeholder={state.aroused} value={state.aroused} onChange={handleChange} className='char-aroused-input' />
+                        When aroused they will:
+                    <input name='aroused' value={state.aroused} onChange={handleChange} className='char-aroused-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
-                        Quick to anger?:
-                    <input name='anger' placeholder={state.anger} value={state.anger} onChange={handleChange} className='char-anger-input' />
+                        When they are angry they will:
+                    <input name='anger' value={state.anger} onChange={handleChange} className='char-anger-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         What it takes to provoke:
-                    <input name='provoke' placeholder={state.provoke} value={state.provoke} onChange={handleChange} className='char-provoke-input' />
+                    <input name='provoke' value={state.provoke} onChange={handleChange} className='char-provoke-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Will overreact when:
-                    <input name='overreact' placeholder={state.overreact} value={state.overreact} onChange={handleChange} className='char-overreact-input' />
+                    <input name='overreact' value={state.overreact} onChange={handleChange} className='char-overreact-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         In denial about:
-                    <input name='denial' placeholder={state.denial} value={state.denial} onChange={handleChange} className='char-denial-input' />
+                    <input name='denial' value={state.denial} onChange={handleChange} className='char-denial-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Negative Coping Mechanisms:
-                    <input name='negCoping' placeholder={state.negCoping} value={state.negCoping} onChange={handleChange} className='char-negCoping-input' />
+                    <input name='negCoping' value={state.negCoping} onChange={handleChange} className='char-negCoping-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Positive Coping Mechanisms:
-                    <input name='posCoping' placeholder={state.posCoping} value={state.posCoping} onChange={handleChange} className='char-posCoping-input' />
+                    <input name='posCoping' value={state.posCoping} onChange={handleChange} className='char-posCoping-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
@@ -430,22 +433,22 @@ function CharPage({ data }) {
                         1. What's at stake if goal isn't achieved(primary stake)
                         2. Forms this might take
                         3. Talents/Skills that will help reach goal:
-                    <input name='outerMot' placeholder={state.outerMot} value={state.outerMot} onChange={handleChange} className='char-outerMot-input' />
+                    <input name='outerMot' value={state.outerMot} onChange={handleChange} className='char-outerMot-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         General Inner Motivation (Unmet Need):
-                    <input name='innerMotGen' placeholder={state.innerMotGen} value={state.innerMotGen} onChange={handleChange} className='char-innerMotGen-input' />
+                    <input name='innerMotGen' value={state.innerMotGen} onChange={handleChange} className='char-innerMotGen-input' />
                     </label>
                 </div>
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Specific Inner Motivation (Unmet Need):
-                    <input name='innerMotSpec' placeholder={state.innerMotSpec} value={state.innerMotSpec} onChange={handleChange} className='char-innerMotSpec-input' />
+                    <input name='innerMotSpec' value={state.innerMotSpec} onChange={handleChange} className='char-innerMotSpec-input' />
                     </label>
                 </div>
-                <button type='submit' className='char-button'>Submit</button>
+                <button type='submit' className='char-button'>Submit</button> <button className='cancel-button' onClick={handleCancel}>Cancel</button>
             </form>
         )
     }
@@ -455,15 +458,12 @@ function CharPage({ data }) {
     // character state is displayed in redux store
     const handleCharEdit = (e) => {
         e.preventDefault();
-        dispatch(charActions.getUserChar(char._id));
-        setEdit(true);
-        // if (char.userId === sessionUser.id || sessionUser.username === '_admin_') {
-        //     dispatch(charActions.getUserChar(characterId));
-        //     setEdit(true);
-        //     // dispatch(charActions.updateCharacters(char));
-        // } else {
-        //     alert("You cannot edit things that aren't yours!");
-        // }
+        if (char.userId === sessionUser.id || sessionUser.username === '_admin_') {
+            dispatch(charActions.getUserChar(characterId));
+            setEdit(true);
+        } else {
+            alert("You cannot edit things that aren't yours!");
+        }
     }
 
     return (
@@ -555,64 +555,67 @@ function CharPage({ data }) {
                         How has the character’s fear diminished their self-esteem?: {char.fearSix}
                     </div>
                     <div className='char-property'>
-                        Character: {char.positiveTraits}
+                        Character's Positive Traits: {char.positiveTraits}
                     </div>
                     <div className='char-property'>
-                        Character: {char.negativeTraits}
+                        Character's Negative Traits: {char.negativeTraits}
                     </div>
                     <div className='char-property'>
-                        Character: {char.idle}
+                        When idle, {char.name} will: {char.idle}
                     </div>
                     <div className='char-property'>
-                        Character: {char.stressed}
+                        When stressed, {char.name} will: {char.stressed}
                     </div>
                     <div className='char-property'>
-                        Character: {char.exhausted}
+                        When exhausted, {char.name} will: {char.exhausted}
                     </div>
                     <div className='char-property'>
-                        Character: {char.inebriated}
+                        When inebriated, {char.name} will: {char.inebriated}
                     </div>
                     <div className='char-property'>
-                        Character: {char.anxious}
+                        When anxious, {char.name} will: {char.anxious}
                     </div>
                     <div className='char-property'>
-                        Character: {char.distracted}
+                        When distracted, {char.name} will: {char.distracted}
                     </div>
                     <div className='char-property'>
-                        Character: {char.attraction}
+                        When attracted to someone, {char.name} will: {char.attraction}
                     </div>
                     <div className='char-property'>
-                        Character: {char.aroused}
+                        When {char.name} is aroused they will: {char.aroused}
                     </div>
                     <div className='char-property'>
-                        Character: {char.anger}
+                        When angry, {char.name} will: {char.anger}
                     </div>
                     <div className='char-property'>
-                        Character: {char.provoke}
+                        When {char.name} is provoked they will: {char.provoke}
                     </div>
                     <div className='char-property'>
-                        Character: {char.overreact}
+                        When {char.name} overreacts they will: {char.overreact}
                     </div>
                     <div className='char-property'>
-                        Character: {char.denial}
+                        When in denial, {char.name} will: {char.denial}
                     </div>
                     <div className='char-property'>
-                        Character: {char.negCoping}
+                        {char.name}'s Negative Coping Mechanism/s: {char.negCoping}
                     </div>
                     <div className='char-property'>
-                        Character: {char.posCoping}
+                        {char.name}'s Positive Coping Mechanism/s: {char.posCoping}
                     </div>
                     <div className='char-property'>
-                        Character: {char.outerMot}
+                        Outer Motivation;
+                        1. What's at stake if goal isn't achieved(primary stake)
+                        2. Forms this might take
+                        3. Talents/Skills that will help reach goal: {char.outerMot}
                     </div>
                     <div className='char-property'>
-                        Character: {char.innerMotGen}
+                        General Inner Motivation (Unmet Need): {char.innerMotGen}
                     </div>
                     <div className='char-property'>
-                        Character: {char.innerMotSpec}
+                        Specific Inner Motivation (Unmet Need): {char.innerMotSpec}
                     </div>
                 </p>
-                <button className='delete-char-button' onClick={handleCharDelete}>Delete Character</button> <button className='edit-char-button' onClick={handleCharEdit}>Edit Character</button>
+                <button className='delete-char-button' onClick={handleCharDelete}>Delete Character</button> <button className='edit-char-button' onClick={handleCharEdit}>Edit Character</button> 
             </div>
         </div>
     )
