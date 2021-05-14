@@ -15,6 +15,7 @@
 
 .nav {
   display: flex;
+  height: 72px;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
@@ -22,13 +23,31 @@
 
 .home, 
 .profile, 
-.new-char {
+.new-char,
+.login,
+.signup {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: white;
+  color: #88AABB;
   text-decoration: none;
-  padding: 10px;
+  padding: 30px;
+  margin-top: 0;
 }
 
+.home:hover, 
+.profile:hover, 
+.new-char:hover,
+.login:hover,
+.signup:hover {
+  color: white;
+}
+
+.logout,
+.signup-button,
+.login-button,
+.demo-button {
+  background-color: #14181C;
+  padding: 10px;
+}

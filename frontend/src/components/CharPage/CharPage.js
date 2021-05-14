@@ -159,6 +159,10 @@ function CharPage({ data }) {
         setRedirect(true);
     }
 
+    // FIXME input fields are retaining previous state
+        // ex. if you click char Allen, then click Pygmy
+        // the edit input fields will display Allen's info
+        // NOT Pygmy
     if (edit) {
         return (
             <form onSubmit={handleSubmit}>
@@ -166,7 +170,7 @@ function CharPage({ data }) {
                 <div className='input-label-containers'>
                     <label className='input-label'>
                         Name:
-                    <input name='name' value={state.name} onChange={handleChange} className='char-name-input' required />
+                    <input type='text' name='name' value={state.name} onChange={handleChange} className='char-name-input' required />
                     </label>
                 </div>
                 <div className='input-label-containers'>
@@ -448,7 +452,9 @@ function CharPage({ data }) {
                     <input name='innerMotSpec' value={state.innerMotSpec} onChange={handleChange} className='char-innerMotSpec-input' />
                     </label>
                 </div>
-                <button type='submit' className='char-button'>Submit</button> <button className='cancel-button' onClick={handleCancel}>Cancel</button>
+                <div className='char-buttons'>
+                    <button type='submit' className='char-button'>Submit</button> <button className='cancel-button' onClick={handleCancel}>Cancel</button>
+                </div>
             </form>
         )
     }
@@ -471,148 +477,150 @@ function CharPage({ data }) {
             <div className='char'>
                 <p>
                     <div className='char-property'>
-                        Name: {char.name}
+                        <p className='char-prop'>Name:</p> {char.name}
                     </div>
                     <div className='char-property'>
-                        Bio: {char.bio}
+                        <p className='char-prop'>Bio:</p> {char.bio}
                     </div>
                     <div className='char-property'>
-                        Age: {char.age}
+                        <p className='char-prop'>Age:</p> {char.age}
                     </div>
                     <div className='char-property'>
-                        Gender: {char.gender}
+                        <p className='char-prop'>Gender:</p> {char.gender}
                     </div>
                     <div className='char-property'>
-                        Height: {char.height}
+                        <p className='char-prop'>Height:</p> {char.height}
                     </div>
                     <div className='char-property'>
-                        Body Type: {char.bodyType}
+                        <p className='char-prop'>Body Type:</p> {char.bodyType}
                     </div>
                     <div className='char-property'>
-                        Hair Color: {char.hairColor}
+                        <p className='char-prop'>Hair Color:</p> {char.hairColor}
                     </div>
                     <div className='char-property'>
-                        Race: {char.race}
+                        <p className='char-prop'>Race:</p> {char.race}
                     </div>
                     <div className='char-property'>
-                        Personality: {char.personality}
+                        <p className='char-prop'>Personality:</p> {char.personality}
                     </div>
                     <div className='char-property'>
-                        Motivation: {char.motivation}
+                        <p className='char-prop'>Motivation:</p> {char.motivation}
                     </div>
                     <div className='char-property'>
-                        Posture: {char.posture}
+
+                        <p className='char-prop'>Posture:</p> {char.posture}
                     </div>
                     <div className='char-property'>
-                        Facial Hair: {char.facialHair}
+                        <p className='char-prop'>Facial Hair:</p> {char.facialHair}
                     </div>
                     <div className='char-property'>
-                        Eyes: {char.eyes}
+                        <p className='char-prop'>Eyes:</p> {char.eyes}
                     </div>
                     <div className='char-property'>
-                        Behavior: {char.behavior}
+                        <p className='char-prop'>Behavior:</p> {char.behavior}
                     </div>
                     <div className='char-property'>
-                        Daily Life: {char.dailyLife}
+                        <p className='char-prop'>Daily Life:</p> {char.dailyLife}
                     </div>
                     <div className='char-property'>
-                        Quirks: {char.quirks}
+                        <p className='char-prop'>Quirks:</p> {char.quirks}
                     </div>
                     <div className='char-property'>
-                        Fatal Flaw/s: {char.fatalFlaw}
+                        <p className='char-prop'>Fatal Flaw/s:</p> {char.fatalFlaw}
                     </div>
                     <div className='char-property'>
-                        Talent/s: {char.talents}
+                        <p className='char-prop'>Talent/s:</p> {char.talents}
                     </div>
                     <div className='char-property'>
-                        Skill/s: {char.skills}
+                        <p className='char-prop'>Skill/s:</p> {char.skills}
                     </div>
                     <div className='char-property'>
-                        Occupation: {char.occupation}
+                        <p className='char-prop'>Occupation:</p> {char.occupation}
                     </div>
                     <div className='char-property'>
-                        Hobbies: {char.hobbies}
+                        <p className='char-prop'>Hobbies:</p> {char.hobbies}
                     </div>
                     <div className='char-property'>
-                        Wound/s: {char.wounds}
+                        <p className='char-prop'>Wound/s:</p> {char.wounds}
                     </div>
                     <div className='char-property'>
-                        What situations will the character now avoid?: {char.fearOne}
+                        <p className='char-prop'>What situations will the character now avoid?:</p> {char.fearOne}
                     </div>
                     <div className='char-property'>
-                        In what situations or settings will the character now feel threatened, unsafe, or vulnerable?: {char.fearTwo}
+                        <p className='char-prop'>In what situations or settings will the character now feel threatened, unsafe, or vulnerable?:</p> {char.fearTwo}
                     </div>
                     <div className='char-property'>
-                        How does the character hide this fear from others?: {char.fearThree}
+                        <p className='char-prop'>How does the character hide this fear from others?:</p> {char.fearThree}
                     </div>
                     <div className='char-property'>
-                        How does the fear impact the character’s relationships with others (negatively and/or positively)?: {char.fearFour}
+                        <p className='char-prop'>How does the fear impact the character’s relationships with others (negatively and/or positively)?:</p> {char.fearFour}
                     </div>
                     <div className='char-property'>
-                        How does the fear affect the character at work?: {char.fearFive}
+                        <p className='char-prop'>How does the fear affect the character at work?:</p> {char.fearFive}
                     </div>
                     <div className='char-property'>
-                        How has the character’s fear diminished their self-esteem?: {char.fearSix}
+                        <p className='char-prop'>How has the character’s fear diminished their self-esteem?:</p> {char.fearSix}
                     </div>
                     <div className='char-property'>
-                        Character's Positive Traits: {char.positiveTraits}
+                        <p className='char-prop'>Character's Positive Traits:</p> {char.positiveTraits}
                     </div>
                     <div className='char-property'>
-                        Character's Negative Traits: {char.negativeTraits}
+                        <p className='char-prop'>Character's Negative Traits:</p> {char.negativeTraits}
                     </div>
                     <div className='char-property'>
-                        When idle, {char.name} will: {char.idle}
+                        <p className='char-prop'>When idle, {char.name} will:</p> {char.idle}
                     </div>
                     <div className='char-property'>
-                        When stressed, {char.name} will: {char.stressed}
+                        <p className='char-prop'>When stressed, {char.name} will:</p> {char.stressed}
                     </div>
                     <div className='char-property'>
-                        When exhausted, {char.name} will: {char.exhausted}
+                        <p className='char-prop'>When exhausted, {char.name} will:</p> {char.exhausted}
                     </div>
                     <div className='char-property'>
-                        When inebriated, {char.name} will: {char.inebriated}
+                        <p className='char-prop'>When inebriated, {char.name} will:</p> {char.inebriated}
                     </div>
                     <div className='char-property'>
-                        When anxious, {char.name} will: {char.anxious}
+                        <p className='char-prop'>When anxious, {char.name} will:</p> {char.anxious}
                     </div>
                     <div className='char-property'>
-                        When distracted, {char.name} will: {char.distracted}
+                        <p className='char-prop'>When distracted, {char.name} will:</p> {char.distracted}
                     </div>
                     <div className='char-property'>
-                        When attracted to someone, {char.name} will: {char.attraction}
+                        <p className='char-prop'>When attracted to someone, {char.name} will:</p> {char.attraction}
                     </div>
                     <div className='char-property'>
-                        When {char.name} is aroused they will: {char.aroused}
+                        <p className='char-prop'>When {char.name} is aroused they will:</p> {char.aroused}
                     </div>
                     <div className='char-property'>
-                        When angry, {char.name} will: {char.anger}
+                        <p className='char-prop'>When angry, {char.name} will:</p> {char.anger}
                     </div>
                     <div className='char-property'>
-                        When {char.name} is provoked they will: {char.provoke}
+                        <p className='char-prop'>When {char.name} is provoked they will:</p> {char.provoke}
                     </div>
                     <div className='char-property'>
-                        When {char.name} overreacts they will: {char.overreact}
+                        <p className='char-prop'>When {char.name} overreacts they will:</p> {char.overreact}
                     </div>
                     <div className='char-property'>
-                        When in denial, {char.name} will: {char.denial}
+                        <p className='char-prop'>When in denial, {char.name} will:</p> {char.denial}
                     </div>
                     <div className='char-property'>
-                        {char.name}'s Negative Coping Mechanism/s: {char.negCoping}
+                        <p className='char-prop'>{char.name}'s Negative Coping Mechanism/s:</p> {char.negCoping}
                     </div>
                     <div className='char-property'>
-                        {char.name}'s Positive Coping Mechanism/s: {char.posCoping}
+                        <p className='char-prop'>{char.name}'s Positive Coping Mechanism/s:</p> {char.posCoping}
                     </div>
                     <div className='char-property'>
-                        Outer Motivation;
-                        1. What's at stake if goal isn't achieved(primary stake)
-                        2. Forms this might take
-                        3. Talents/Skills that will help reach goal: {char.outerMot}
+                        <p className='char-prop mot-p'>Outer Motivation;</p>
+                        <p className='char-prop mot-p'>1. What's at stake if goal isn't achieved(primary stake)</p>
+                        <p className='char-prop mot-p'>2. Forms this might take</p>
+                        <p className='char-prop mot-p'>3. Talents/Skills that will help reach goal:</p> {char.outerMot}
                     </div>
                     <div className='char-property'>
-                        General Inner Motivation (Unmet Need): {char.innerMotGen}
+                        <p className='char-prop'>General Inner Motivation (Unmet Need):</p> {char.innerMotGen}
                     </div>
                     <div className='char-property'>
-                        Specific Inner Motivation (Unmet Need): {char.innerMotSpec}
+
+                        <p className='char-prop'>Specific Inner Motivation (Unmet Need):</p> {char.innerMotSpec}
                     </div>
                 </p>
                 <button className='delete-char-button' onClick={handleCharDelete}>Delete Character</button> <button className='edit-char-button' onClick={handleCharEdit}>Edit Character</button> 

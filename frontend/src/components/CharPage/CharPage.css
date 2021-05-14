@@ -1,0 +1,42 @@
+.delete-char-button,
+.edit-char-button,
+.cancel-button,
+.submit-button {
+    background-color: #14181C;
+    color: #88AABB;
+    margin-top: 10px;
+    width: 100px;
+    padding: 10px;
+}
+
+.cancel-button,
+.submit-button {
+    padding: 19px;
+}
+
+.delete-char-button:hover,
+.edit-char-button:hover,
+.cancel-button:hover,
+.submit-button:hover {
+    color: white;
+}
+
+.char-page-container, 
+.char,
+.char-property {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+p.char-prop {
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: underline;
+}
+p {
+    font-size: 15px;
+}

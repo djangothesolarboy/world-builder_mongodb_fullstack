@@ -31,14 +31,14 @@ function Navigation({ isLoaded }){
     )
   } else {
     sessionLinks = (
-      <>
-        <NavLink to='/login'>
+      <div className='nav-container'>
+        <NavLink className='nav-link login' to='/login'>
           <LoginFormModal/>
         </NavLink>
-        <NavLink to='/signup'>
+        <NavLink className='nav-link signup' to='/signup'>
           <SignupFormModal/>
         </NavLink>
-      </>
+      </div>
     )
   }
 

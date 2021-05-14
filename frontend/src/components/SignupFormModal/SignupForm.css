@@ -1,0 +1,31 @@
+.signup-form-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.email-label,
+.username-label
+.password-label {
+    color: #88AABB;
+    align-items: center;
+}
+
+.signup-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signup-button {
+    color: #88AABB;
+    margin-top: 10px;
+    width: 100px;
+    padding: 10px;
+}
+
+.signup-button:hover {
+    color: white;
+}

@@ -6,8 +6,31 @@ body {
 }
 
 a {
-    color: white;
+    color: #88AABB;
     text-decoration: none;
+}
+
+a:hover {
+    color: white;
+}
+
+p, 
+label {
+    color: #88AABB;
+}
+
+input[type=text],
+input,
+textarea {
+    color: #697A8B;
+    background-color: #CCDDEE;
+}
+
+input[type=text]:focus,
+input:focus,
+textarea:focus {
+    color: black;
+    background-color: white;
 }
 
 button {
