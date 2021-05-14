@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 });
 
 // create a character
-router.post('/new', (req, res) => {
+router.post('/new', verify, (req, res) => {
     const newCharacter = new Character({
         name: req.body.name,
         bio: req.body.bio,
@@ -87,7 +87,7 @@ router.delete('/delete', verify, async (req, res) => {
 });
 
 // edit a character
-router.patch('/edit', (req, res) => {
+router.patch('/edit', verify, (req, res) => {
     return Character.updateOne({ _id: req.query._id }, {
         "$set": {
             name: req.body.name,

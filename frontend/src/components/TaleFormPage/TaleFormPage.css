@@ -1,0 +1,42 @@
+.tale-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input,
+.input-label {
+    font-size: 15px;
+    padding: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mot-p {
+    margin: 0;
+}
+
+.tale-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-tale-button,
+.cancel-button {
+    color: #88AABB;
+    margin: 10px;
+    margin-top: 10px;
+    width: 100px;
+    padding: 19px;
+    background-color: #14181C;
+}
+
+.new-tale-button:hover {
+    color: white;
+}

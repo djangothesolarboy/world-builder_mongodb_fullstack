@@ -1,17 +1,22 @@
 .home-page-container {
 }
 
-.char-section-container {
+.char-section_container,
+.tale-section_container {
+    margin-top: 80px;
 }
 
-.char-section {
+.char-section,
+.tale-section {
     display: flex;
     align-items: center;
+    font-size: 15px;
     justify-content: center;
     flex-direction: column;
 }
 
-.char-list {
+.char-list,
+.tale-list {
     margin: 10px;
 }
 

@@ -5,12 +5,18 @@ import { BrowserRouter, Link, NavLink, Redirect, Route, Switch } from "react-rou
 
 import './App.css';
 import * as userActions from './store/user';
+
 import SignupForm from './components/SignupFormModal/SignupForm.js';
 import LoginForm from './components/LoginFormModal/LoginForm.js';
+
 import Navigation from "./components/Navigation";
+import HomePage from "./components/HomePage/HomePage";
+
 import CharFormPage from "./components/CharFormPage/CharFormPage";
 import CharPage from './components/CharPage/CharPage';
-import HomePage from "./components/HomePage/HomePage";
+
+import TalePage from './components/TalePage/TalePage';
+import TaleFormPage from "./components/TaleFormPage/TaleFormPage";
 
 function App({ store }) {
 	const sessionUser = useSelector(state => state.session.user);
@@ -28,7 +34,7 @@ function App({ store }) {
 			{isLoaded && (
 				<>
 					<Switch>
-						<Route exact path='/characters'>
+						<Route exact path='/home'>
 							<HomePage/>
 						</Route>
 						<Route path='/characters/new'>
@@ -37,6 +43,12 @@ function App({ store }) {
 						<Route exact path='/characters/:characterId'>
 							<CharPage/>
 						</Route>
+						{/* <Route path='/tales/new'>
+							<TaleFormPage/>
+						</Route>
+						<Route exact path='/tales/:taleId'>
+							<TalePage/>
+						</Route> */}
 						<Route className='route-link login' path='/login'>
 							<LoginForm/>
 						</Route>

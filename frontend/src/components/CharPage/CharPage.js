@@ -72,12 +72,12 @@ function CharPage({ data }) {
     const [edit, setEdit] = useState(false);
     
     useEffect(() => {
-        dispatch(charActions.getUserChar(characterId))
-        dispatch(charActions.fetchCharacters())
+        dispatch(charActions.getUserChar(characterId));
+        dispatch(charActions.fetchCharacters());
     }, [dispatch, characterId]);
     
     if (submitRedirect) return <Redirect to={`/characters/${char._id}`}/>;
-    if (redirect) return <Redirect to='/characters'/>;
+    if (redirect) return <Redirect to='/home'/>;
 
     const handleCharDelete = (e) => {
         e.preventDefault();
@@ -623,7 +623,9 @@ function CharPage({ data }) {
                         <p className='char-prop'>Specific Inner Motivation (Unmet Need):</p> {char.innerMotSpec}
                     </div>
                 </p>
-                <button className='delete-char-button' onClick={handleCharDelete}>Delete Character</button> <button className='edit-char-button' onClick={handleCharEdit}>Edit Character</button> 
+                <div className='del-edit-buttons'>
+                    <button className='delete-char-button' onClick={handleCharDelete}>Delete Character</button> <button className='edit-char-button' onClick={handleCharEdit}>Edit Character</button> 
+                </div> 
             </div>
         </div>
     )

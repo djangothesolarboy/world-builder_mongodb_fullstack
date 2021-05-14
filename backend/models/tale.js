@@ -14,7 +14,15 @@ const TaleSchema = Schema({
         type: String,
         required: true
     },
+    event: {
+        type: String,
+        required: true
+    },
     middle: {
+        type: String,
+        required: true
+    },
+    climax: {
         type: String,
         required: true
     },

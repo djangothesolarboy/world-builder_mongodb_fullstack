@@ -8,8 +8,14 @@
 }
 
 .nav-container {
+  top: 0;
+  left: 0;
+  z-index: 1;
+  position: fixed;
   display: flex;
+  width: 100%;
   height: 72px;
+  margin-bottom: 60px;
   background-color: #14181C;
 }
 
@@ -24,6 +30,7 @@
 .home, 
 .profile, 
 .new-char,
+.new-tale,
 .login,
 .signup {
   display: flex;
@@ -39,6 +46,7 @@
 .home:hover, 
 .profile:hover, 
 .new-char:hover,
+.new-tale:hover,
 .login:hover,
 .signup:hover {
   color: white;

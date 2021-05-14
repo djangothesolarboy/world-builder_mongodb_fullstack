@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 // import routes
 const charRouter = require('./routes/api/characters');
 const userRouter = require('./routes/api/users');
+const taleRouter = require('./routes/api/tales');
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.get('/', (req, res) => res.send('Working!'));
 // route middleware
 app.use('/api/characters', charRouter);
 app.use('/api/users', userRouter);
+app.use('/api/tales', taleRouter);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server is running on ${port}`));

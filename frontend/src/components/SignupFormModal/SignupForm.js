@@ -15,7 +15,7 @@ function SignupForm() {
     const [errors, setErrors] = useState([]);
     const [redirect, setRedirect] = useState(false);
 
-    if (redirect) return <Redirect to='/characters'/>;
+    if (redirect) return <Redirect to='/home'/>;
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -1,4 +1,4 @@
-### Create a question
+### Create a character
 POST http://127.0.0.1:5000/api/characters/new
 Content-Type: application/json
 
@@ -13,16 +13,47 @@ Content-Type: application/json
     "race": "white"
 }
 
+### Create a tale
+POST http://127.0.0.1:5000/api/tales/new
+Content-Type: application/json
+
+{
+    "name": "pee",
+    "beginning": "sdfsdf",
+    "event": "23",
+    "middle": "tufgsdfgsdfgrkey",
+    "climax": "tall",
+    "end": "musc",
+    "briefDesc": "black"
+}
+
+
 ### View characters
 GET http://127.0.0.1:5000/api/characters
+Content-Type: application/json
+
+### View tales
+GET http://127.0.0.1:5000/api/tales
 Content-Type: application/json
 
 ### Delete a question
 DELETE http://127.0.0.1:5000/api/characters/6088ee224c6cee10f9d6d6bf
 Content-Type: application/json
 
+### Delete a tale
+DELETE http://127.0.0.1:5000/api/tales/
+Content-Type: application/json
+
 ### Edit question
 PATCH http://127.0.0.1:5000/api/characters/edit
+Content-Type: application/json
+
+{
+    "name": "peterrrrrrrr"
+}
+
+### Edit tale
+PATCH http://127.0.0.1:5000/api/tales/edit
 Content-Type: application/json
 
 {

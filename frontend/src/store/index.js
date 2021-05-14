@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 
 import charReducer from './char';
 import userReducer from './user';
+import taleReducer from './tale';
 
 const rootReducer = combineReducers({
     session: userReducer,
-    characters: charReducer
+    characters: charReducer,
+    tales: taleReducer
 });
 
 let enhancer;

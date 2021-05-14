@@ -15,10 +15,10 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    <Redirect to='/characters'/>
+    <Redirect to='/home'/>
     return dispatch(userActions.login({ email, password }))
       .then(() => {
-        history.push('/characters')
+        history.push('/home')
       })
       .catch((res) => {
       if (res.data && res.data.errors) setErrors(res.data.errors);
@@ -30,7 +30,7 @@ function LoginForm() {
     setErrors([]);
     return dispatch(userActions.demoLogin())
       .then(() => {
-        history.push('/characters')
+        history.push('/home')
       })
       .catch((res) => {
         if (res.data && res.data.errors) setErrors(res.data.errors);

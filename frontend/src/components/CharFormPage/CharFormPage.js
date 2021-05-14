@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 
 import './CharFormPage.css';
 import { fetchCharacters, submitCharacter } from '../../store/char';
+import { fetchTales } from '../../store/tale';
 
 function CharFormPage() {
     const userId = useSelector((state) => state.session.user._id);
@@ -119,7 +120,8 @@ function CharFormPage() {
 
     if (redirect) {
         dispatch(fetchCharacters());
-        return <Redirect to='/characters'/>;
+        dispatch(fetchTales());
+        return <Redirect to='/home'/>;
     }
 
     const handleChange = (e) => {

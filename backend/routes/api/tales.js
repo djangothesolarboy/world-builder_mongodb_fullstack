@@ -12,12 +12,14 @@ router.get('/', (req, res) => {
 });
 
 // create new tale
-router.post('/new', (req, res) => {
+router.post('/new', verify, (req, res) => {
     const newTale = new Tale({
         name: req.body.name,
         userId: req.body.userId,
         beginning: req.body.beginning,
+        event: req.body.event,
         middle: req.body.middle,
+        climax: req.body.climax,
         end: req.body.end,
         briefDesc: req.body.briefDesc,
         taleSpine: req.body.taleSpine,
@@ -39,17 +41,31 @@ router.get('/:taleId', (req, res) => {
 });
 
 // delete a tale
-router.delete('/:taleId', verify, (req, res) => {
-    Tale.findByIdAndDelete({ _id: req.params.taleId })
+router.delete('/delete', verify, (req, res) => {
+    Tale.deleteOne({ _id: req.query._id })
         .then(tale => res.json(tale))
         .catch(err => res.status(404).json(err))
 });
 
 // edit a tale
-router.patch('/:taleId', verify, (req, res) => {
-    Tale.findByIdAndUpdate({ _id: req.params.taleId }, { $set: req.body }, { new: true, useFindAndModify: false })
-        .then(tale => res.json({ _id: req.params.taleId }))
-        .catch(err => res.status(404).json(err))
+router.patch('/edit', verify, (req, res) => {
+    return Tale.updateOne({ _id: req.query._id }, { 
+        "$set": {
+            name: req.body.name,
+            beginning: req.body.beginning,
+            event: req.body.event,
+            middle: req.body.middle,
+            climax: req.body.climax,
+            end: req.body.end,
+            briefDesc: req.body.briefDesc,
+            taleSpine: req.body.taleSpine,
+            taleType: req.body.taleType,
+            purpose: req.body.purpose,
+            listChar: req.body.listChar,
+            theTale: req.body.theTale
+        }})
+        .then(tale => res.json(tale))
+        .catch(err => res.status(404).json({ message: err }))
 });
 
 module.exports = router;

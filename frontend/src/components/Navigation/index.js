@@ -21,10 +21,13 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <div className='nav-container'>
         <div className='nav'>
-          <NavLink className='nav-link home' to="/characters">Home</NavLink>
+          <NavLink className='nav-link home' to="/home">Home</NavLink>
           <ProfileButton className='nav-link profile' user={sessionUser}/>
           <NavLink className='nav-link new-char' to='/characters/new'>
             New Character
+          </NavLink>
+          <NavLink className='nav-link new-tale' to='/tales/new'>
+            New Tale
           </NavLink>
         </div>
       </div>

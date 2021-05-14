@@ -84,7 +84,6 @@ export const updateCharacters = (characterId, character) => async dispatch => {
                 name, bio, age, userId, gender, height, bodyType, hairColor, race, personality, motivation, posture, facialHair, eyes, behavior, dailyLife, quirks, fatalFlaw, talents, skills, occupation, hobbies, wounds, fearOne, fearTwo, fearThree, fearFour, fearFive, fearSix, positiveTraits, negativeTraits, idle, stressed, exhausted, inebriated, anxious, distracted, attraction, aroused, anger, provoke, overreact, denial, negCoping, posCoping, outerMot, innerMotGen, innerMotSpec
             }
         });
-        console.log('char ->', res.data);
         dispatch(editChar());
     } catch (err) {
         console.log(err);
@@ -100,6 +99,7 @@ export const getUserChar = (characterId) => async dispatch => {
                 _id: characterId
             }
         });
+        console.log('char -->', res.data);
         dispatch(userChar(res.data));
         return res;
     } catch (err) {
