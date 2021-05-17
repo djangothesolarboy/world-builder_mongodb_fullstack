@@ -58,6 +58,7 @@ export const submitTale = tale => async dispatch => {
         const res = await axios({
             method: 'post',
             url: 'https://world--builder.herokuapp.com/api/tales/new',
+            withCredentials: false,
             data: {
                 name, userId, beginning, event, middle, climax, end, briefDesc, taleSpine, taleType, purpose, charList, theTale
             }
@@ -79,6 +80,7 @@ export const updateTale = (taleId, tale) => async dispatch => {
             params: {
                 _id: taleId
             },
+            withCredentials: false,
             data: {
                 name, userId, beginning, event, middle, climax, end, briefDesc, taleSpine, taleType, purpose, charList, theTale
             }
@@ -109,6 +111,7 @@ export const deleteTale = (taleId) => async dispatch => {
     try {
         const res = await axios({
             method: 'DELETE',
+            withCredentials: false,
             url: `https://world--builder.herokuapp.com/api/tales/delete`,
             params: {
                 _id: taleId
