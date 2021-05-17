@@ -22,6 +22,10 @@
     color: white;
 }
 
+.char-name-label {
+    margin-top: 80px;
+}
+
 .char-page-container, 
 .char,
 .char-property {
