@@ -1,5 +1,13 @@
 .profile-dropdown {
+  display: flex;
   position: absolute;
+  padding: 20px;
+  border-radius: 5px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #14181C;
+  box-shadow: #88AABB;
 }
 
 .nav-link {
@@ -48,11 +56,16 @@
 .new-char:hover,
 .new-tale:hover,
 .login:hover,
-.signup:hover {
+.signup:hover,
+.logout:hover {
   color: white;
 }
 
-.logout,
+.logout {
+  background-color: #2C3440;
+  padding: 10px;
+}
+
 .signup-button,
 .login-button,
 .demo-button {

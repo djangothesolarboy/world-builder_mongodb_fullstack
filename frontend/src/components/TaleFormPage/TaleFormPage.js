@@ -69,7 +69,7 @@ function TaleFormPage() {
             <form onSubmit={handleSubmit}>
                 <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
                 <div className='tale-name-container'>
-                    <label className='input-label'>
+                    <label className='input-label tale-name-label'>
                         Name:
                         <input className='input' type='text' name='name' value={state.name} onChange={handleChange} className='tale-name-input'/>
                     </label>
