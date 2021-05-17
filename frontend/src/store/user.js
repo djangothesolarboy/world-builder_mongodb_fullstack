@@ -20,7 +20,7 @@ function removeUser() {
 
 export const signup = (user) => async (dispatch) => {
     const { username, email, password } = user;
-    const res = await fetch('http://localhost:5000/api/users/signup', {
+    const res = await fetch('https://world--builder.herokuapp.com/api/users/signup', {
         method: 'POST',
         body: JSON.stringify({
             username,
@@ -34,7 +34,7 @@ export const signup = (user) => async (dispatch) => {
 
 export const login = (user) => async (dispatch) => {
     const { email, password } = user;
-    const res = await fetch('http://localhost:5000/api/users/login', {
+    const res = await fetch('https://world--builder.herokuapp.com/api/users/login', {
         method: 'POST',
         body: JSON.stringify({
             email,
@@ -48,7 +48,7 @@ export const login = (user) => async (dispatch) => {
 export const demoLogin = () => async (dispatch) => {
     let email = "demo@demo.io";
     let password = "password";
-    const res = await fetch('http://localhost:5000/api/users/login', {
+    const res = await fetch('https://world--builder.herokuapp.com/api/users/login', {
         method: 'POST',
         body: JSON.stringify({
             email,
@@ -60,7 +60,7 @@ export const demoLogin = () => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
-    const res = await fetch('http://localhost:5000/api/users/logout', {
+    const res = await fetch('https://world--builder.herokuapp.com/api/users/logout', {
         method: 'DELETE',
     });
     dispatch(removeUser());
@@ -86,7 +86,7 @@ const userReducer = (state = initialState, action) => {
 };
 
 export const restoreUser = () => async dispatch => {
-    const res = await fetch('http://localhost:5000/api/users');
+    const res = await fetch('https://world--builder.herokuapp.com/api/users');
     dispatch(setUser(res.data.user));
     return res;
 }

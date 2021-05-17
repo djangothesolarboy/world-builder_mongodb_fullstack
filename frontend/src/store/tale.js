@@ -45,7 +45,7 @@ function newTale(tale) {
 
 export const fetchTales = () => async dispatch => {
     try {
-        const res = await axios.get('http://localhost:5000/api/tales');
+        const res = await axios.get('https://world--builder.herokuapp.com/api/tales');
         dispatch(allTales(res.data));
     } catch (err) {
         console.log(err);
@@ -58,7 +58,7 @@ export const submitTale = tale => async dispatch => {
             name, userId, beginning, event, middle, climax, end, briefDesc, taleSpine, taleType, purpose, charList, theTale } = tale;
         const res = await axios({
             method: 'post',
-            url: 'http://localhost:5000/api/tales/new',
+            url: 'https://world--builder.herokuapp.com/api/tales/new',
             data: {
                 name, userId, beginning, event, middle, climax, end, briefDesc, taleSpine, taleType, purpose, charList, theTale
             }
@@ -76,7 +76,7 @@ export const updateTale = (taleId, tale) => async dispatch => {
         } = tale;
         const res = await axios({
             method: 'patch',
-            url: `http://localhost:5000/api/tales/edit/`,
+            url: `https://world--builder.herokuapp.com/api/tales/edit/`,
             params: {
                 _id: taleId
             },
@@ -94,7 +94,7 @@ export const getUserTale = (taleId) => async dispatch => {
     try {
         const res = await axios({
             method: 'get',
-            url: `http://localhost:5000/api/tales/${taleId}`,
+            url: `https://world--builder.herokuapp.com/api/tales/${taleId}`,
             params: {
                 _id: taleId
             }
@@ -110,7 +110,7 @@ export const deleteTale = (taleId) => async dispatch => {
     try {
         const res = await axios({
             method: 'DELETE',
-            url: `http://localhost:5000/api/tales/delete`,
+            url: `https://world--builder.herokuapp.com/api/tales/delete`,
             params: {
                 _id: taleId
             }
