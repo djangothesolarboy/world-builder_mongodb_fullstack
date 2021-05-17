@@ -1,17 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, Redirect, useParams, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import * as charActions from '../../store/char';
 import { fetchTales } from '../../store/tale';
-import CharPage from '../CharPage/CharPage';
 
 import './HomePage.css';
 
 function HomePage({ data }) {
     const dispatch = useDispatch();
 
-    const sessionUser = useSelector((state) => state.session.user);
     const chars = useSelector((state) => state.characters.characters);
     const tales = useSelector((state) => state.tales.tales);
 

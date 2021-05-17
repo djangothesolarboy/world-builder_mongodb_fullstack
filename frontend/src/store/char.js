@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { fetch } from './fetch';
 
 const GET_CHARS = 'chars/all';
 const USER_CHAR = 'char/one';
@@ -126,7 +125,6 @@ export const deleteCharacter = (characterId) => async dispatch => {
 
 // reducer
 const charReducer = (state = { characters: [], character: {} }, action) => {
-    let newState;
     switch (action.type) {
         case GET_CHARS:
             return { ...state, characters: action.payload };

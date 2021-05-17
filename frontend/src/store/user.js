@@ -1,5 +1,3 @@
-
-import React from 'react';
 import { fetch } from './fetch';
 
 const SET_USER = 'session/setUser';

@@ -1,7 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Provider } from 'react-redux';
+import { useDispatch } from "react-redux";
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Link, NavLink, Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import './App.css';
 import * as userActions from './store/user';
@@ -19,7 +18,6 @@ import TalePage from './components/TalePage/TalePage';
 import TaleFormPage from "./components/TaleFormPage/TaleFormPage";
 
 function App({ store }) {
-	const sessionUser = useSelector(state => state.session.user);
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
 	useEffect(() => {
@@ -43,12 +41,12 @@ function App({ store }) {
 						<Route exact path='/characters/:characterId'>
 							<CharPage/>
 						</Route>
-						{/* <Route path='/tales/new'>
+						<Route path='/tales/new'>
 							<TaleFormPage/>
 						</Route>
 						<Route exact path='/tales/:taleId'>
 							<TalePage/>
-						</Route> */}
+						</Route>
 						<Route className='route-link login' path='/login'>
 							<LoginForm/>
 						</Route>

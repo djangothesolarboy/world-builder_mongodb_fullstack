@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Redirect } from "react-router";
 
 import * as userActions from '../../store/user';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
   const [redirect, setRedirect] = useState(false);
   

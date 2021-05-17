@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { fetch } from './fetch';
 
 const GET_TALES = 'tales/all';
 const USER_TALE = 'tale/one';
@@ -125,7 +124,6 @@ export const deleteTale = (taleId) => async dispatch => {
 
 // reducer
 const taleReducer = (state = { tales: [], tale: {} }, action) => {
-    let newState;
     switch (action.type) {
         case GET_TALES:
             return { ...state, tales: action.payload };
