@@ -44,7 +44,7 @@ function newTale(tale) {
 
 export const fetchTales = () => async dispatch => {
     try {
-        const res = await axios.get('https://world--builder.herokuapp.com/api/tales');
+        const res = await axios.get('http://world--builder.herokuapp.com/api/tales');
         dispatch(allTales(res.data));
     } catch (err) {
         console.log(err);
@@ -57,8 +57,9 @@ export const submitTale = tale => async dispatch => {
             name, userId, beginning, event, middle, climax, end, briefDesc, taleSpine, taleType, purpose, charList, theTale } = tale;
         const res = await axios({
             method: 'post',
-            url: 'https://world--builder.herokuapp.com/api/tales/new',
-            withCredentials: false,
+            url: 'http://world--builder.herokuapp.com/api/tales/new',
+            withCredentials: true,
+            crossDomain: true,
             data: {
                 name, userId, beginning, event, middle, climax, end, briefDesc, taleSpine, taleType, purpose, charList, theTale
             }
@@ -80,7 +81,8 @@ export const updateTale = (taleId, tale) => async dispatch => {
             params: {
                 _id: taleId
             },
-            withCredentials: false,
+            withCredentials: true,
+            crossDomain: true,
             data: {
                 name, userId, beginning, event, middle, climax, end, briefDesc, taleSpine, taleType, purpose, charList, theTale
             }
@@ -96,6 +98,7 @@ export const getUserTale = (taleId) => async dispatch => {
         const res = await axios({
             method: 'get',
             url: `https://world--builder.herokuapp.com/api/tales/${taleId}`,
+            crossDomain: true,
             params: {
                 _id: taleId
             }
@@ -111,7 +114,8 @@ export const deleteTale = (taleId) => async dispatch => {
     try {
         const res = await axios({
             method: 'DELETE',
-            withCredentials: false,
+            withCredentials: true,
+            crossDomain: true,
             url: `https://world--builder.herokuapp.com/api/tales/delete`,
             params: {
                 _id: taleId

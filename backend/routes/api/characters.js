@@ -11,7 +11,7 @@ const Mongoose = require('mongoose');
 // get all characters
 router.get('/', (req, res) => {
     Character.find()
-        .then(characters => res.json(characters))
+        .then(characters => res.json(characters).header("Access-Control-Allow-Origin", "*"))
         .catch(err => res.status(404).json(err))
 });
 
@@ -68,21 +68,21 @@ router.post('/new', verify, (req, res) => {
         innerMotSpec: req.body.innerMotSpec
     })
 
-    newCharacter.save().then(character => res.json(character))
+    newCharacter.save().then(character => res.json(character).header("Access-Control-Allow-Origin", "*"))
         .catch(err => res.status(404).json(err))
 });
 
 // view one character
 router.get('/:characterId', (req, res) => {
     const character = Character.findById({ _id: req.params.characterId })
-        .then(character => res.json(character))
+        .then(character => res.json(character).header("Access-Control-Allow-Origin", "*"))
         .catch(err => res.status(404).json(err))
 })
 
 // delete a character
 router.delete('/delete', verify, async (req, res) => {
     Character.deleteOne({ _id: req.query._id })
-        .then(character => res.json(character))
+        .then(character => res.json(character).header("Access-Control-Allow-Origin", "*"))
         .catch(err => res.status(404).json(err))
 });
 
@@ -138,7 +138,7 @@ router.patch('/edit', verify, (req, res) => {
             innerMotGen: req.body.innerMotGen,
             innerMotSpec: req.body.innerMotSpec
         }})
-        .then(character => res.json(character))
+        .then(character => res.json(character).header("Access-Control-Allow-Origin", "*"))
         .catch(err => res.status(404).json({ message: err }))
 });
 

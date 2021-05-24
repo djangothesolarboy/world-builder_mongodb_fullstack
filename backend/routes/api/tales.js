@@ -7,7 +7,7 @@ const verify = require('../verify');
 // get all tales
 router.get('/', (req, res) => {
     Tale.find()
-        .then(tales => res.json(tales))
+        .then(tales => res.json(tales).header("Access-Control-Allow-Origin", "*"))
         .catch(err => res.status(404).json(err))
 });
 
@@ -29,21 +29,21 @@ router.post('/new', verify, (req, res) => {
         theTale: req.body.theTale
     })
 
-    newTale.save().then(tale => res.json(tale))
+    newTale.save().then(tale => res.json(tale).header("Access-Control-Allow-Origin", "*"))
         .catch(err => res.status(404).json(err))
 });
 
 // view one tale by id
 router.get('/:taleId', (req, res) => {
     const tale = Tale.findById({ _id: req.params.taleId })
-        .then(tale => res.json(tale))
+        .then(tale => res.json(tale).header("Access-Control-Allow-Origin", "*"))
         .catch(err => res.status(404).json(err))
 });
 
 // delete a tale
 router.delete('/delete', verify, (req, res) => {
     Tale.deleteOne({ _id: req.query._id })
-        .then(tale => res.json(tale))
+        .then(tale => res.json(tale).header("Access-Control-Allow-Origin", "*"))
         .catch(err => res.status(404).json(err))
 });
 
@@ -64,7 +64,7 @@ router.patch('/edit', verify, (req, res) => {
             listChar: req.body.listChar,
             theTale: req.body.theTale
         }})
-        .then(tale => res.json(tale))
+        .then(tale => res.json(tale).header("Access-Control-Allow-Origin", "*"))
         .catch(err => res.status(404).json({ message: err }))
 });
 
