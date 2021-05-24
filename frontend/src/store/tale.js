@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { fetch } from './fetch';
 
 const GET_TALES = 'tales/all';
 const USER_TALE = 'tale/one';
@@ -45,7 +44,7 @@ function newTale(tale) {
 
 export const fetchTales = () => async dispatch => {
     try {
-        const res = await axios.get('http://localhost:5000/api/tales');
+        const res = await axios.get('http://world--builder.herokuapp.com/api/tales');
         dispatch(allTales(res.data));
     } catch (err) {
         console.log(err);
@@ -58,7 +57,9 @@ export const submitTale = tale => async dispatch => {
             name, userId, beginning, event, middle, climax, end, briefDesc, taleSpine, taleType, purpose, charList, theTale } = tale;
         const res = await axios({
             method: 'post',
-            url: 'http://localhost:5000/api/tales/new',
+            url: 'http://world--builder.herokuapp.com/api/tales/new',
+            withCredentials: true,
+            crossDomain: true,
             data: {
                 name, userId, beginning, event, middle, climax, end, briefDesc, taleSpine, taleType, purpose, charList, theTale
             }
@@ -76,10 +77,12 @@ export const updateTale = (taleId, tale) => async dispatch => {
         } = tale;
         const res = await axios({
             method: 'patch',
-            url: `http://localhost:5000/api/tales/edit/`,
+            url: `https://world--builder.herokuapp.com/api/tales/edit/`,
             params: {
                 _id: taleId
             },
+            withCredentials: true,
+            crossDomain: true,
             data: {
                 name, userId, beginning, event, middle, climax, end, briefDesc, taleSpine, taleType, purpose, charList, theTale
             }
@@ -94,7 +97,8 @@ export const getUserTale = (taleId) => async dispatch => {
     try {
         const res = await axios({
             method: 'get',
-            url: `http://localhost:5000/api/tales/${taleId}`,
+            url: `https://world--builder.herokuapp.com/api/tales/${taleId}`,
+            crossDomain: true,
             params: {
                 _id: taleId
             }
@@ -110,7 +114,9 @@ export const deleteTale = (taleId) => async dispatch => {
     try {
         const res = await axios({
             method: 'DELETE',
-            url: `http://localhost:5000/api/tales/delete`,
+            withCredentials: true,
+            crossDomain: true,
+            url: `https://world--builder.herokuapp.com/api/tales/delete`,
             params: {
                 _id: taleId
             }
@@ -125,7 +131,6 @@ export const deleteTale = (taleId) => async dispatch => {
 
 // reducer
 const taleReducer = (state = { tales: [], tale: {} }, action) => {
-    let newState;
     switch (action.type) {
         case GET_TALES:
             return { ...state, tales: action.payload };

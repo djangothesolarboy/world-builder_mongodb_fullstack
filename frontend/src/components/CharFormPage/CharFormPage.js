@@ -141,7 +141,7 @@ function CharFormPage() {
             <form onSubmit={handleSubmit}>
                 <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
                 <div className='input-container'>
-                    <label className='input-label'>
+                    <label className='input-label char-name-label'>
                         Name: <br/>
                         <input className='input' type='text' name='name' value={state.name} onChange={handleChange} className='char-name-input' required/>
                     </label>

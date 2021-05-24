@@ -1,0 +1,53 @@
+.delete-tale-button,
+.edit-tale-button {
+    background-color: #14181C;
+    color: #88AABB;
+    margin-top: 10px;
+    width: 100px;
+    height: 55px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.cancel-button,
+.submit-button {
+    background-color: #14181C;
+    color: #88AABB;
+    margin-top: 10px;
+    width: 100px;
+    padding: 10px;
+    margin: 10px;
+    padding: 19px;
+}
+
+.delete-tale-button:hover,
+.edit-tale-button:hover,
+.cancel-button:hover,
+.submit-button:hover {
+    color: white;
+}
+
+.tale-name-label {
+    margin-top: 80px;
+}
+
+.tale-page-container, 
+.tale,
+.tale-property {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+p.tale-prop {
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: underline;
+}
+p {
+    font-size: 15px;
+}

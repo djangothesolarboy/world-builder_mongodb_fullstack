@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Redirect } from "react-router";
 
 import * as userActions from '../../store/user';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
   const [redirect, setRedirect] = useState(false);
   
@@ -38,15 +37,14 @@ function ProfileButton({ user }) {
   return (
     <div className='profile-button'>
       <button className='nav-link profile' onClick={openMenu}>
-        user
+        {user.username}
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
+          <p>{user.email}</p>
+          <p>
             <button className='logout' onClick={logout}>Logout</button>
-          </li>
+          </p>
         </ul>
       )}
     </div>

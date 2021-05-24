@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory, useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 
-import * as sessionActions from '../../store/user';
 import * as charActions from '../../store/char';
 
 import './CharPage.css';
@@ -63,11 +62,9 @@ function CharPage({ data }) {
     })
 
     const [redirect, setRedirect] = useState(false);
-    const [submitRedirect, setSubmitRedirect] = useState(false);
+    // const [submitRedirect, setSubmitRedirect] = useState(false);
 
-    const sessionUser = useSelector((state) => state.session.user);
-    const userId = useSelector((state) => state.session.user);
-    
+    const sessionUser = useSelector((state) => state.session.user);    
     
     const [edit, setEdit] = useState(false);
     
@@ -76,7 +73,7 @@ function CharPage({ data }) {
         dispatch(charActions.fetchCharacters());
     }, [dispatch, characterId]);
     
-    if (submitRedirect) return <Redirect to={`/characters/${char._id}`}/>;
+    // if (submitRedirect) return <Redirect to={`/characters/${char._id}`}/>;
     if (redirect) return <Redirect to='/home'/>;
 
     const handleCharDelete = (e) => {
@@ -168,7 +165,7 @@ function CharPage({ data }) {
             <form onSubmit={handleSubmit}>
                 <input type="hidden" name="_csrf" value="{{csrfToken}}" />
                 <div className='input-label-containers'>
-                    <label className='input-label'>
+                    <label className='input-label char-name-label'>
                         Name:
                     <input type='text' name='name' value={state.name} onChange={handleChange} className='char-name-input' required />
                     </label>

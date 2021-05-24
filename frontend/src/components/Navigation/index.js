@@ -1,17 +1,12 @@
-import React, { useState } from "react";
-import { Link, NavLink, Route, Switch } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-
+import React from "react";
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal/index.js';
 import SignupFormModal from '../SignupFormModal/index.js';
 
-import * as userActions from '../../store/user';
-
 import './Navigation.css';
-import HomePage from "../HomePage/HomePage";
-import CharFormPage from "../CharFormPage/CharFormPage";
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
