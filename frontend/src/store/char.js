@@ -58,7 +58,8 @@ export const submitCharacter = character => async dispatch => {
         const res = await axios({
             method: 'post',
             url: 'https://world--builder.herokuapp.com/api/characters/new',
-            withCredentials: false,
+            withCredentials: true,
+            crossDomain: true,
             data: {
                 name, bio, age, userId, gender, height, bodyType, hairColor, race, personality, motivation, posture, facialHair, eyes, behavior, dailyLife, quirks, fatalFlaw, talents, skills, occupation, hobbies, wounds, fearOne, fearTwo, fearThree, fearFour, fearFive, fearSix, positiveTraits, negativeTraits, idle, stressed, exhausted, inebriated, anxious, distracted, attraction, aroused, anger, provoke, overreact, denial, negCoping, posCoping, outerMot, innerMotGen, innerMotSpec
             }
@@ -76,11 +77,12 @@ export const updateCharacters = (characterId, character) => async dispatch => {
         } = character;
         const res = await axios({
             method: 'patch',
-            withCredentials: false,
             url: `https://world--builder.herokuapp.com/api/characters/edit/`,
             params: {
                 _id: characterId
             },
+            withCredentials: true,
+            crossDomain: true,
             data: {
                 name, bio, age, userId, gender, height, bodyType, hairColor, race, personality, motivation, posture, facialHair, eyes, behavior, dailyLife, quirks, fatalFlaw, talents, skills, occupation, hobbies, wounds, fearOne, fearTwo, fearThree, fearFour, fearFive, fearSix, positiveTraits, negativeTraits, idle, stressed, exhausted, inebriated, anxious, distracted, attraction, aroused, anger, provoke, overreact, denial, negCoping, posCoping, outerMot, innerMotGen, innerMotSpec
             }
@@ -96,6 +98,8 @@ export const getUserChar = (characterId) => async dispatch => {
         const res = await axios({
             method: 'get',
             url: `https://world--builder.herokuapp.com/api/characters/${characterId}`, 
+            withCredentials: true,
+            crossDomain: true,
             params: {
                 _id: characterId
             }
@@ -112,7 +116,8 @@ export const deleteCharacter = (characterId) => async dispatch => {
     try {
         const res = await axios({
             method: 'DELETE',
-            withCredentials: false,
+            withCredentials: true,
+            crossDomain: true,
             url: `https://world--builder.herokuapp.com/api/characters/delete`, 
             params: {
                 _id: characterId
