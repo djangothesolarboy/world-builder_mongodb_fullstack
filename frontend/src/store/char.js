@@ -44,7 +44,11 @@ function newChar(character) {
 
 export const fetchCharacters = () => async dispatch => {
     try {
-        const res = await axios.get('https://world--builder.herokuapp.com/api/characters');
+        const res = await axios.get('https://world--builder.herokuapp.com/api/characters', {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            }
+        });
         dispatch(allChars(res.data));
     } catch (err) {
         console.log(err);
@@ -58,6 +62,9 @@ export const submitCharacter = character => async dispatch => {
         const res = await axios({
             method: 'post',
             url: 'https://world--builder.herokuapp.com/api/characters/new',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            },
             withCredentials: true,
             crossDomain: true,
             data: {
@@ -78,6 +85,9 @@ export const updateCharacters = (characterId, character) => async dispatch => {
         const res = await axios({
             method: 'patch',
             url: `https://world--builder.herokuapp.com/api/characters/edit/`,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            },
             params: {
                 _id: characterId
             },
@@ -98,6 +108,9 @@ export const getUserChar = (characterId) => async dispatch => {
         const res = await axios({
             method: 'get',
             url: `https://world--builder.herokuapp.com/api/characters/${characterId}`, 
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            },
             withCredentials: true,
             crossDomain: true,
             params: {
@@ -116,6 +129,9 @@ export const deleteCharacter = (characterId) => async dispatch => {
     try {
         const res = await axios({
             method: 'DELETE',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            },
             withCredentials: true,
             crossDomain: true,
             url: `https://world--builder.herokuapp.com/api/characters/delete`, 
